@@ -26,10 +26,6 @@ __Examples__
 [image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)
 2.
 ![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
-3.
-<img src="https://nl.wikipedia.org/wiki/De_doodstraf_wereldwijd#/media/File:Capital_punishment_in_the_world.svg"/>
-5.
-![image](https://plot.ly/~policemv/68/crime-statistics-for-first-6-months-of-2014-2015-comparison.embed)
 
 
 2. Optional parts
