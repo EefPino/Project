@@ -1,7 +1,5 @@
 # Projectvoorstel
 
-**Projectvoorstel**
-
 __Eveline Tiekink		11267321__
 
 **Problem Statement**
