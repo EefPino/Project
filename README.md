@@ -15,17 +15,23 @@ Include a visual sketch of what the final product will look like for the user; i
 
 __Views__
 ![image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)
-<image>![image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)</img>
+
+![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
+
 The final product will include a map of the world. You can click on some countries which will be zoomed in which you can see the counties. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes (may be with the ages etc. of the criminals). Maybe there will also be arrows with the amount of emigration of criminals per country.
 There will be a search function in which you can type a country (or county) and you will get a bar chart of the crimes.
 
 __Examples__
 
+1. Minimum viable product
 <img src="https://nl.wikipedia.org/wiki/De_doodstraf_wereldwijd#/media/File:Capital_punishment_in_the_world.svg"/>
-Include a list of main features that will be available to users. All features should also be visible in the sketch. Keep it brief.
-Split the features into 1) the minimum viable product (MVP) and 2) parts that are optional to implement.
-A minimum viable product is the product with as least features as possible, which still helps solve the problem for your target audience. We think it’s important to clearly define this, because it defines the minimum amount of work that you will have to put into the project.
-Other parts of your project may be optional to implement or “nice to have”.
+
+![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
+
+![alt text](https://plot.ly/~policemv/68/crime-statistics-for-first-6-months-of-2014-2015-comparison.embed)
+
+
+2. Optional parts
 
 __Similar__
 
