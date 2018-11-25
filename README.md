@@ -22,9 +22,8 @@ There will be a search function in which you can type a country (or county) and 
 __Examples__
 
 1. Minimum viable product
-1.
-[image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)
-2.
+
+![image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)
 ![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
 
 
