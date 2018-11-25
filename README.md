@@ -16,14 +16,11 @@ Include a visual sketch of what the final product will look like for the user; i
 __Views__
 
 The final product will include a map of the world. You can click on some countries which will be zoomed in which you can see the counties. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes (may be with the ages etc. of the criminals). Maybe there will also be arrows with the amount of emigration of criminals per country.
-There wil
-
-The final product must implement at the very least 3 linked interactive views showing different aspects of the data, as well as at least 2 other interactive components (e.g. table, dropdown, checkbox, etc.).
-At least one view should comprise a visualization that you have not implemented in earlier courses. At least one interactive component has to be connected to data (e.g., resulting in variable or dataset change).
-The final product embodies good visualization practices.
+There will be a search function in which you can type a country (or county) and you will get a bar chart of the crimes.
 
 __Examples__
 
+<img src="https://nl.wikipedia.org/wiki/De_doodstraf_wereldwijd#/media/File:Capital_punishment_in_the_world.svg"/>
 Include a list of main features that will be available to users. All features should also be visible in the sketch. Keep it brief.
 Split the features into 1) the minimum viable product (MVP) and 2) parts that are optional to implement.
 A minimum viable product is the product with as least features as possible, which still helps solve the problem for your target audience. We think it’s important to clearly define this, because it defines the minimum amount of work that you will have to put into the project.
