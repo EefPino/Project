@@ -14,7 +14,6 @@ Summarize your idea in a single sentence, connecting it to the “gap” that yo
 Include a visual sketch of what the final product will look like for the user; if you envision the application to have multiple screens, sketch these all out separately. Clearly specify the possible user interactions, and include concrete examples of data. Your sketches do not have to be professional-looking, but they have to be complete and neat!
 
 __Views__
-!
 
 The final product will include a map of the world. You can click on some countries which will be zoomed in which you can see the counties. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes (may be with the ages etc. of the criminals). Maybe there will also be arrows with the amount of emigration of criminals per country.
 There will be a search function in which you can type a country (or county) and you will get a bar chart of the crimes.
@@ -27,9 +26,6 @@ __Examples__
 ![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
 
 ![image](https://user-images.githubusercontent.com/43990565/48984476-41226c80-f0fc-11e8-8a8c-bdedfdab741b.png)
-
-sdhsaskj
-![image](https://plot.ly/~policemv/68/crime-statistics-for-first-6-months-of-2014-2015-comparison.embed)
 
 2. Optional parts
 
