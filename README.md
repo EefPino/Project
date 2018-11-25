@@ -48,7 +48,7 @@ http://statline.cbs.nl/StatWeb/publication/?DM=SLNL&PA=81947NED&D1=0-1%2c12%2c18
 
 __External Components__
 
-(I do not know exactly which libraries I am going to use)
+(I do not know exactly which libraries I am going to use.)
 * d3-tip 
 * SQLite
 
