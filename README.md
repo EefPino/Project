@@ -12,16 +12,12 @@ This visualization is designed to collect data of reported crime with the goal t
 
 __Views__
 
-The final product will include a map of the world. You can click on some countries which will be zoomed in, whereby you can see the countries. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes (the gender, age etc. of the criminals). Maybe there will also be arrows with the amount of emigration of criminals per country.
+The final product will include a map of the world. You can click on some countries which will be zoomed in, whereby you can see the countries. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes and a pie chart of the gender of the criminal. Maybe there will also be arrows with the amount of emigration of criminals per country.
 There will be a search function as well in which you can type a country (or town) and you will get a bar chart of the crimes.
 
 __Examples__
 
 1. Minimum viable product
-
-![image](https://user-images.githubusercontent.com/43990565/48984252-d07a5080-f0f9-11e8-8a0a-82f3e4b236ef.png)
-![image](https://user-images.githubusercontent.com/43990565/48984323-880f6280-f0fa-11e8-8328-6b5be862c177.png)
-![image](https://user-images.githubusercontent.com/43990565/48984476-41226c80-f0fc-11e8-8a8c-bdedfdab741b.png)
 
 ![afbeelding](https://user-images.githubusercontent.com/43990565/50770242-e5b0d600-1286-11e9-8777-69302b85374f.png)
 
