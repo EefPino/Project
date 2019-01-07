@@ -20,7 +20,7 @@ __Examples__
 1. Minimum viable product
 ![afbeelding](https://user-images.githubusercontent.com/43990565/50770242-e5b0d600-1286-11e9-8777-69302b85374f.png)
 
-2. Optional parts
+2. Optional part
 ![afbeelding](https://user-images.githubusercontent.com/43990565/50770310-21e43680-1287-11e9-9a6e-6ed1d048b0d9.png)
 
 __Similar__
