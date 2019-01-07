@@ -4,7 +4,8 @@ __Eveline Tiekink		11267321__
 
 **Problem Statement**
 
-What is the amount of criminality for each country?
+What is the amount of criminality for each country and for each town in the Netherlands?
+
 This visualization is designed to collect data of reported crime with the goal to improve the spread of that information. It will be visualized by a map of the world with different colors indicating the amount of crimes (percentual). You can click on some countries which will be zoomed in which you can see the counties. Probably the crimes will be divided and by scrolling over a country you can see a bar plot of the different types of crimes (may be with the ages etc. of the criminals). Maybe there will also be arrows with the amount of emigration of criminals per country. (This depend on the amount of work.) 
 
 **Solutions**
