@@ -72,6 +72,6 @@ __External Components__
 * d3 (for instance d3-tip) 
 * SQLite
 
-__Hardes Parts__
+__Hardest Parts__
 
 The hardest part is probably to choose which data I want to use, because there is a lot of data which can be found about this subject. Probably I am not doing the emigration of the criminals or I just zoom in on the Netherlands and I will not use the ages and genders of the criminals.
