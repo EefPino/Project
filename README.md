@@ -33,8 +33,17 @@ This is the website of it: https://www.statsilk.com/world-stats/
 __Data sets__
 
 (There are multiple other data sets, which I maybe will also use. But for now this is enough. A friend of my has a data set about the migration of criminals which I also want to have.)
-1. Globally data of reported crime (1990-1994) with different types of it and compared to different variables like age of suspects. 
+1. Globally data of reported crime in 1990 up to and including 1994 with different types of crimes:
 https://www.icpsr.umich.edu/icpsrweb/NACJD/studies/3686/version/1/summary
+    - Assaults
+    - Rapes
+    - Robberies
+    - Thefts
+    - Burglaries
+    - Frauds
+    - Embezzlements
+    - Drug possession
+    - Bribery
 2. This data exists of crimes in counties and quarters (2010-2015) about property crimes, vandalism, crimes against public order and authority and violent and sexual crimes.
 https://www.cbs.nl/nl-nl/maatwerk/2016/45/geregistreerde-criminaliteit-per-gemeente-wijk-en-buurt-2010-2015
 3. Globally data of crimes about assault, kdinapping, theft, robbery, burglary, motor vehicle theft and sexual violence. (+- 2003-2015)
