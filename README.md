@@ -44,8 +44,12 @@ https://www.icpsr.umich.edu/icpsrweb/NACJD/studies/3686/version/1/summary
     - Embezzlements
     - Drug possession
     - Bribery
-2. This data exists of crimes in counties and quarters (2010-2015) about property crimes, vandalism, crimes against public order and authority and violent and sexual crimes.
+2. This data exists of crimes in counties and quarters (2010-2015) in the Netherlands in 2010 up to and including 2015 with different types of crimes:
 https://www.cbs.nl/nl-nl/maatwerk/2016/45/geregistreerde-criminaliteit-per-gemeente-wijk-en-buurt-2010-2015
+    - Theft
+    - Vandalism
+    - Crime against public order and authority
+    - Violence and sexual offenses
 3. Globally data of crimes about assault, kdinapping, theft, robbery, burglary, motor vehicle theft and sexual violence. (+- 2003-2015)
 https://data.unodc.org/#state:1
 4. Data about the crimanility of the Netherlands with respect to age, gender and delctgroup. (2015-2017) 
