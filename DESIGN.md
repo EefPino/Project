@@ -44,12 +44,14 @@ https://www.icpsr.umich.edu/icpsrweb/NACJD/studies/3686/version/1/summary
     - Embezzlements
     - Drug possession
     - Bribery
+    Probably I am not going to use this data set, because I have found a dataset with values until 2017. Otherwise I am going to convert this text file to a JSON file and filtering the data only to the things I need.
 2. This data exists of crimes in counties and quarters (2010-2015) in the Netherlands in 2010 up to and including 2015 with different types of crimes:
 https://www.cbs.nl/nl-nl/maatwerk/2016/45/geregistreerde-criminaliteit-per-gemeente-wijk-en-buurt-2010-2015
     - Theft
     - Vandalism
     - Crime against public order and authority
     - Violence and sexual offenses
+    I am going tho parse this dataset by making a JSON file and filtering just the information I need from the csv of the data.
 3. Globally data of crimes about the following (2003-2015):  
 https://data.unodc.org/#state:1
     - Assault
@@ -59,12 +61,14 @@ https://data.unodc.org/#state:1
     - Burglary
     - Sexual violence
     - Gender
-4. Data about the crimanility of the Netherlands with the following aspects(2004-2017) : 
+    This are multiple datasets, for each subject there is a new csv file. I am going to transform the file to a JSON file and filter the right information. 
+4. Data about the crimanility of the Netherlands with the following aspects(2005-2017) : 
 http://statline.cbs.nl/StatWeb/publication/?DM=SLNL&PA=81947NED&D1=0-1%2c12%2c18%2c22%2c25-28%2c39%2c45%2c49%2c52-53&D2=0&D3=0&D4=0-4&D5=(l-2)-l&HDR=G2%2cG1%2cG3%2cG4&STB=T&VW=T
     - Offense group
     - Gender
     - Age
     - Group of origin
+    This csv file will be converted to a JSON file.
     
 __External Components__
 
