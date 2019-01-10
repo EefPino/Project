@@ -1,4 +1,4 @@
-# Projectvoorstel
+# Project Proposal
 
 __Eveline Tiekink		11267321__
 
