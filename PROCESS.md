@@ -4,3 +4,9 @@ Change my Project Proposal by changing the text and adding pictures of visualiza
 
 __08-01-2018__
 Made a Design Document with a list of data sources with information of transforming the data, a diagram with an overview of the technical components (visualizations), descriptions of these components and a list of APIs and D3 plugins.
+
+__09-01-2018__
+I have converted the data of the different crimes to JSON files.
+
+__10-01-2018__
+I have converted all the data to JSON files.
