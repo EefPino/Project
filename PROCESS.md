@@ -9,4 +9,7 @@ __09-01-2018__
 I have converted the data of the different crimes to JSON files.
 
 __10-01-2018__
-I have converted all the data to JSON files.
+I have converted all the data to JSON files and have made an index.html whereby you can open a site.
+
+__11-01-2018__
+I have made a stylesheet for the webpage.
