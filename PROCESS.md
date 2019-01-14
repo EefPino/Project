@@ -13,3 +13,5 @@ I have converted all the data to JSON files and have made an index.html whereby 
 
 __11-01-2018__
 I have made a stylesheet for the webpage.
+
+__14-01-2018__
