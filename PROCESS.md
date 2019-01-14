@@ -12,6 +12,7 @@ __10-01-2018__
 I have converted all the data to JSON files and have made an index.html whereby you can open a site.
 
 __11-01-2018__
-I have made a stylesheet for the webpage.
+I have made a stylesheet for the webpage and put a map of the world in the website, whithout the right data, but with titles, colors etc.
 
 __14-01-2018__
+Changed the data trough making one json file instead of nine json files, because this is easier to load in javascript for making the site. I have performed this by merging multiple dataframes. 
