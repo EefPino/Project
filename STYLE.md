@@ -12,7 +12,7 @@ Rules:
    * Put the closing bracket on a new line, without leading spaces.
    * Do not end a complex statement with a semicolon.
 
-     If a statement is very simple the statement is on one line between the brackets.
+    If a statement is very simple the statement is on one line between the brackets.
 
 5. Line length < 80 characters.
 6. Comments should start with a capital letter, but a dot at the end is not necessary.
