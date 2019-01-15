@@ -16,3 +16,7 @@ I have made a stylesheet for the webpage and put a map of the world in the websi
 
 __14-01-2018__
 Changed the data trough making one json file instead of nine json files, because this is easier to load in javascript for making the site. I have performed this by merging multiple dataframes. 
+
+
+__15-01-2018__
+Loaded the data in the javascript and arranged the data by making a dictionary with all the countries as keys and a list with the data from six sorts of crimes as value. I have chosen for this, because now you know exactly which data belongs to which country and its easy to take a specific value out of the data. I have also looked trough another world map, because the last map used two letter codes of the countries and I want to use one with three letter codes, because it's easier to change a country name to a three letter code. 
