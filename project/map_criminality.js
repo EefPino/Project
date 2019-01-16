@@ -20,12 +20,6 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 window.onload = function(){
 
-  // var requests = [d3.json("data_assaults_2_world.json"), d3.json("data_kidnapping_2_world.json"),
-  //                d3.json("data_theft_2_world.json"), d3.json("data_robbery_2_world.json"),
-  //                d3.json("data_burglary_2_world.json"), d3.json("data_sexual_violence_2_world.json"),
-  //                d3.json("data_males_2_detained_world.json"), d3.json("data_females_2_detained_world.json")];
-
-
   var requests = [d3.json("data_world_new_2.json")];
 
   console.log("Lukt");
@@ -34,25 +28,12 @@ window.onload = function(){
 
     // Defines the data and deletes unused data.
     dataWorld = response[0];
-    console.log("lukt niet");
     console.log(dataWorld);
     console.log(dataWorld["data"]);
 
     // crime_sorts = [dataset_assaults, dataset_burglary, dataset_kidnapping,
     //                dataset_robbery, dataset_sexual_violence, dataset_theft,
     //                dataset_males_detained, dataset_females_detained]
-
-        // console.log("ervoor");
-
-    // var optionExists = ($('#columnsAvailable option[value=' + $(this).val() + ']').length > 0);
-    //
-    // if(!optionExists){
-    //   $('#columnsAvailable').append("<option value='"+$(this).val()+"'>"+$(this).text()+"</option>");
-    // }
-    //
-    // if(!$.inArray(value, array))array.push(value);
-
-    // jQuery.inArray(data_world["data"][i][j], countries);
 
     var countries = [];
     for (i = 0; i < 146; i++) {
@@ -73,7 +54,6 @@ window.onload = function(){
         }
       }
 
-
     console.log("countries");
     console.log(countries);
 
@@ -82,34 +62,89 @@ window.onload = function(){
     countries.forEach(function(d){
       allData[d] = {"2010": [], "2015": []};
     })
-    console.log("joe");
-    console.log(allData);
 
     dataWorld["data"].forEach( function (dp) {
-      for (count = 0; count < dp.length; count += 4) {
+      for (count = 0; count < 24; count += 4) {
         allData[dp[count + 1]]["2010"].push(Number(dp[count + 2]))
         allData[dp[count + 1]]["2015"].push(Number(dp[count + 3]))
       };
     });
 
-    console.log(allData)
+    console.log("all data per country");
+    console.log(allData);
+
+    allCrimes = {}
+
+    countries.forEach(function(d){
+      var sum = 0
+      for (i = 0; i < 6; i++) {
+        if (!Number.isNaN(allData[d]["2010"][i]) && (allData[d]["2010"][i] != null)) {
+          sum += allData[d]["2010"][i]
+          // console.log(allData[d]["2010"][i]);
+        }
+      }
+      // console.log("sum");
+      // console.log(sum);
+      allCrimes[d] = sum;
+    })
+
+    console.log("all crimes");
+    console.log(allCrimes);
+
+    console.log("!!!!!!!!!!!!!!!!!!!!");
+
+    // Change the names of the countries to names which are in cordance with the data map countries.
+    allCrimes["The Bahamas"] = allCrimes["Bahamas"];
+    delete allCrimes["Bahamas"];
+    allCrimes["Bolivia"] = allCrimes["Bolivia (Plurinational State of)"];
+    delete allCrimes["Bolivia (Plurinational State of)"];
+    allCrimes["Brunei"] = allCrimes["Brunei Darussalam"];
+    delete allCrimes["Brunei Darussalam"];
+    allCrimes["Ivory Coast"] = allCrimes["Cote d'Ivoire"];
+    delete allCrimes["Cote d'Ivoire"];
+    allCrimes["Czech Republic"] = allCrimes["Czechia"];
+    delete allCrimes["Czechia"];
+    allCrimes["Iran"] = allCrimes["Iran (Islamic Republic of)"];
+    delete allCrimes["Iran (Islamic Republic of)"];
+    allCrimes["Iraq"] = allCrimes["Iraq (Central Iraq)"];
+    delete allCrimes["Iraq (Central Iraq)"];
+    allCrimes["Kososvo"] = allCrimes["Kosovo under UNSCR 1244"];
+    delete allCrimes["Kosovo under UNSCR 1244"];
+    allCrimes["North Korea"] = allCrimes["Republic of Korea"];
+    delete allCrimes["Republic of Korea"];
+    allCrimes["Moldova"] = allCrimes["Republic of Moldova"];
+    delete allCrimes["Republic of Moldova"];
+    allCrimes["Russia"] = allCrimes["Russian Federation"];
+    delete allCrimes["Russian Federation"];
+    allCrimes["Republic of Serbia"] = allCrimes["Serbia"];
+    delete allCrimes["Serbia"];
+    allCrimes["Syria"] = allCrimes["Syrian Arab Republic"];
+    delete allCrimes["Syrian Arab Republic"];
+    allCrimes["Macedonia"] = allCrimes["The former Yugoslav Republic of Macedonia"];
+    delete allCrimes["The former Yugoslav Republic of Macedonia"];
+    allCrimes["England"] = allCrimes["United Kingdom (England and Wales)"];
+    delete allCrimes["United Kingdom (England and Wales)"];
+    allCrimes["USA"] = allCrimes["United States of America"];
+    delete allCrimes["United States of America"];
+    console.log(allCrimes);
+
+   //  countries.forEach(function(d){
+   //   console.log(allData[d]);
+   // })
+
+    // for (i = 0; i < countries.length; i++) {
+      // console.log(countries[i]);
+      // console.log(allData[countries[i]]["2010"]);
+    // }
+    console.log(allData["Albania"]["2010"]);
     // for (i = 0; i < 146; i++) {
     //   for (j = 0; j < 32; j++) {
     //     if (j % 4 == 1) {
     //       console.log();
     //       if(jQuery.inArray(dataWorld["data"][i][j], countries) == -1) {
     //         countries.push(dataWorld["data"][i][j]);
-    //         console.log("drol");
     //         console.log(dataWorld["data"][i][j]);
     //         allData[dataWorld["data"][i][j]] = [];
-    //         }
-    //       }
-    //     }
-    //   }
-
-      console.log("alles");
-      console.log(allData);
-
 
     // for (i = 0; i < 146; i++) {
     //   // console.log(data_world["data"][i]);
@@ -119,7 +154,6 @@ window.onload = function(){
     //     j += 4;
     //   })
     // }
-
 
     dataSorts = ["Assault", "Burglary", "Kidnapping", "Robbery", "Sexual violence", "Theft"];
 
@@ -138,29 +172,13 @@ window.onload = function(){
         j += 4;
       })
     }
+    console.log("data per crime");
     console.log(data);
-
-    // console.log(data_2010);
-
-    // for  (i = 0; i < countries.length; i++) {
-    //   var countries[i] = []
-    // }
-
-
 
    //   console.log("pipo");
    //   region_country_2010_2015.push(Object.keys(data));
    // }
     // console.log();
-
-    // data_assault = response[0];
-    // data_kidnapping = response[1];
-    // data_theft = response[2];
-    // data_robbery = response[3];
-    // data_burglary = response[4];
-    // data_sexual_violence = response[5];
-    // data_males_detained = response[6];
-    // data_females_detained = response[7];
 
 
     // console.log("Doei");
@@ -174,13 +192,6 @@ window.onload = function(){
     //   console.log(response[i]);
     //   data_sorts[i] = response[i]
     // }
-
-    // console.log("data");
-    // console.log(data_assault);
-    //
-    // console.log("keys");
-    // console.log(data_sorts);
-
 
     // var region_country_2010_2015 = [];
     // for (i = 0; i < data_sorts.length; i++) {
@@ -299,6 +310,23 @@ window.onload = function(){
     // createDonutchart(data)
 
     function createDonutchart(cont) {
+
+      // genderData = {}
+      //
+      // countries.forEach(function(d){
+      //   genderData[d] = {"2010": [], "2015": []};
+      // })
+      //
+      //
+      // dataWorld["data"].forEach( function (dp) {
+      //   for (i = 24; i < 32; i += 4) {
+      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
+      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]))
+      //   };
+      // });
+
+      console.log("gender");
+      console.log(genderData);
 
       data_males_detained = response[0]
 
@@ -434,6 +462,170 @@ window.onload = function(){
     // function createDonutchart(cont) {
     //   console.log("Donutchart");
     // }
+
+    // 1. Het inladen van meerdere bestanden naar d3 (het stukje onder ‘queue()’ in het voorbeeld) werkt in versie 5 inmiddels anders. Kijk hiervoor nog eens naar je code van vorige week (hint: “Promise”).
+
+    // 2. Het voorbeeld gebruikt een bestand “world_countries.json”, waarbij het niet zo duidelijk is waar dit bestand nu eigenlijk vandaan komt. Dit bestand vind je hier: http://bl.ocks.org/micahstubbs/raw/8e15870eb432a21f0bc4d3d527b2d14f/a45e8709648cafbbf01c78c76dfa53e31087e713/world_countries.json
+
+    // allCrimes
+    crimes = JSON.stringify(allCrimes);
+    console.log(crimes);
+
+    // genderData = {}
+    //
+    // countries.forEach(function(d){
+    //   genderData[d] = {"2010": [], "2015": []};
+    // })
+    //
+    //
+    // dataWorld["data"].forEach( function (dp) {
+    //   for (i = 24; i < 32; i += 4) {
+    //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
+    //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]))
+    //   };
+    // });
+    //
+    // console.log("gender");
+    // console.log(genderData);
+
+    // Set tooltips
+    var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) {
+                  return "<strong>Country: </strong><span class='details'>" + d.properties.name + "<br></span>" + "<strong>Population: </strong><span class='details'>" + format(d.population) +"</span>";
+                })
+
+    var margin = {top: 0, right: 0, bottom: 0, left: 0},
+                 width = 960 - margin.left - margin.right,
+                 height = 500 - margin.top - margin.bottom;
+
+    var color = d3.scaleThreshold()
+                  .domain([10000,100000,500000,1000000,5000000,10000000,50000000,100000000,500000000,1500000000])
+                  .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
+
+    var path = d3.geoPath();
+
+    var svg = d3.select("body")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .append('g')
+                .attr('class', 'map');
+
+    var projection = d3.geoMercator()
+                       .scale(130)
+                       .translate( [width / 2, height / 1.5]);
+
+    var path = d3.geoPath().projection(projection);
+
+    svg.call(tip);
+
+    // queue()
+    //     .defer(d3.json, "world_countries.json")
+    //     .defer(d3.json, "world_population.json")
+    //     .await(ready);
+
+    // http://bl.ocks.org/micahstubbs/raw/8e15870eb432a21f0bc4d3d527b2d14f/a45e8709648cafbbf01c78c76dfa53e31087e713/world_countries.json
+
+    d3.json("world_countries.json").then(function(response) {
+      console.log("bijna");
+      ready(response)
+    })
+
+    function ready(data) {
+      var populationById = {};
+
+      console.log(data);
+
+      console.log("djibediedoe");
+      // console.log(allCrimes);
+
+      // allData[dp[count + 1]]["2010"].push(Number(dp[count + 2]))
+
+      // allCrimes.forEach(function(c) {
+      //   console.log(c);
+      // })
+
+      // Adds a key (crimes) and the data to each country when there is data.
+      count = 0
+      for (const [key, value] of Object.entries(allCrimes)) {
+        // console.log(key, value);
+        data.features.forEach(function(d) {
+          if (d.properties.name == key) {
+            count++
+            d.crimes = value
+          }
+        })
+      }
+
+      console.log(data);
+      console.log(count);
+
+      // console.log(allCrimes.length);
+
+      // data.features.forEach(function(d) {
+      //   console.log(d.properties.name);
+      // })
+
+      // dataWorld["data"].forEach( function (dp) {
+      //   for (i = 24; i < 32; i += 4) {
+      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
+      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]))
+      //   };
+      // });
+
+      // population.forEach(function(d) { populationById[d.id] = +d.population; });
+      // console.log(populationById);
+      // data.features.forEach(function(d) { d.population = populationById[d.id] });
+      console.log(data.features[2]["crimes"]);
+
+
+      svg.append("g")
+          .attr("class", "countries")
+          .selectAll("path")
+          .data(data.features)
+          .enter().append("path")
+          .attr("d", path)
+          // .style("fill", function(d) { return color(  populationById[d.id]); })
+          .style("fill", function(d) {
+            console.log(d.crimes);
+            // console.log(data.features.crimes);
+            return color(d.crimes)
+          })
+          .style('stroke', 'white')
+          .style('stroke-width', 1.5)
+          .style("opacity",0.8)
+          // tooltips
+          .style("stroke","white")
+          .style('stroke-width', 0.3)
+          .on('mouseover',function(d){
+            tip.show(d);
+
+            d3.select(this)
+              .style("opacity", 1)
+              .style("stroke","white")
+              .style("stroke-width",3);
+          })
+          .on('mouseout', function(d){
+              tip.hide(d);
+
+                d3.select(this)
+                  .style("opacity", 0.8)
+                  .style("stroke","white")
+                  .style("stroke-width",0.3);
+              });
+
+      svg.append("path")
+          .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id; }))
+           // .datum(topojson.mesh(data.features, function(a, b) { return a !== b; }))
+          .attr("class", "names")
+          .attr("d", path);
+    }
+
+
+
+
 
 
 
