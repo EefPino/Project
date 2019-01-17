@@ -25,4 +25,4 @@ __16-01-2018__
 Formatted the data perfectly for the world map and changed the country names by hand to the same country names used for the world map by using three letter codes. Made the world map. Only the colors are not right. (Now countries which have no data are all black and the countries with data are all white instead of different colors.)
 
 __17-01-2018__
-Changed the color domain for the world map, trough which the colors of the countries became different opacities of blue. Made a click on function, which resulted in giving a bar chart when clicking on a country. Also made a tool tip in the world map and the barchart. Created axis for the bar chart.
+Changed the color domain for the world map, trough which the colors of the countries became different opacities of blue. Made a click on function, which resulted in giving a bar chart and donut chart when clicking on a country. Also made a tool tip in the world map, donut chart and the barchart. Created axis for the bar chart. Created titles for the visualisations and created text in the donut chart which changes for the different values of woman and men.
