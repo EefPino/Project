@@ -28,4 +28,4 @@ __17-01-2018__
 Changed the color domain for the world map, trough which the colors of the countries became different opacities of blue. Made a click on function, which resulted in giving a bar chart and donut chart when clicking on a country. Also made a tool tip in the world map, donut chart and the barchart. Created axis for the bar chart. Created titles for the visualisations and created text in the donut chart which changes for the different values of woman and men.
 
 __18-01-2018__
-Made a new map_criminality.js where commented code is deleted, comments are added and wet code is translated to dry code.
+Made a new map_criminality.js where commented code is deleted, comments are added and wet code is translated to dry code. Also made a legend for the donut chart and changed the text which came when scrolling over the donut chart.
