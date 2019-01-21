@@ -28,13 +28,34 @@ def open_csv(data):
     # Selects the data which is needed.
     continent = all_data[["Region"]]
     country = all_data[["Country"]]
+    data_2003 = all_data[["2003.1"]]
+    data_2004 = all_data[["2004.1"]]
+    data_2005 = all_data[["2005.1"]]
+    data_2006 = all_data[["2006.1"]]
+    data_2007 = all_data[["2007.1"]]
+    data_2008 = all_data[["2008.1"]]
+    data_2009 = all_data[["2009.1"]]
     data_2010 = all_data[["2010.1"]]
+    data_2011 = all_data[["2011.1"]]
+    data_2012 = all_data[["2012.1"]]
+    data_2013 = all_data[["2013.1"]]
+    data_2014 = all_data[["2014.1"]]
     data_2015 = all_data[["2015.1"]]
+
+
+    # if "*" in str(country):
+    #     print(str(country))
+    # print(country)
+
+    # for count in range(len(country)):
+    #     country[count] = country[count].replace("*", "")
+
+    # print(matching)
 
     # print(country)
     # print(data_2010)
 
-    frames = [continent, country, data_2010, data_2015]
+    frames = [continent, country, data_2003, data_2004, data_2005, data_2006, data_2007, data_2008, data_2009, data_2010, data_2011, data_2012, data_2013, data_2014, data_2015]
 
     dataframe = pandas.concat(frames, axis=1, join='inner')
     print("crime")
@@ -53,7 +74,7 @@ def merge(*args):
     print(dataframe)
     print("jodelahiehoe")
 
-    dataframe.to_json("data_world_new.json", orient='split')
+    dataframe.to_json("data_world_everything.json", orient='split')
 
     # data_dict = dataframe.to_dict()
 
@@ -96,10 +117,10 @@ def convert(dataset):
     data_sorts = ["data_assaults.json", "data_kidnapping.json", "data_theft.json",
         	      "data_robbery.json", "data_burglary.json", "data_sexual_violence.json"]
 
-    # Makes a json file of the data.
-    for sort in data_sorts:
-        with open(sort, 'w') as outfile:
-            json.dump(data_dict, outfile)
+    # # Makes a json file of the data.
+    # for sort in data_sorts:
+    #     with open(sort, 'w') as outfile:
+    #         json.dump(data_dict, outfile)
 
 def calculate(assaults_json, kidnapping_json, theft_json, robbery_json, burglary_json, sexual_violence_json):
     """
