@@ -21,7 +21,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 window.onload = function(){
 
-  var requests = [d3.json("data_world_new_2.json")];
+  var requests = [d3.json("data_world_new_2.json"), d3.json("data_world_everything.json")];
 
   Promise.all(requests).then(function(response) {
 
@@ -35,7 +35,7 @@ window.onload = function(){
     for (i = 0; i < 146; i++) {
       for (j = 0; j < 32; j++) {
         if (j % 4 == 1) {
-            if(jQuery.inArray(dataWorld["data"][i][j], countries) == -1) {
+            if(jQuery.inArray(dataWorld["data"][i][j], countries) == - 1) {
               countries.push(dataWorld["data"][i][j]);
             }
           }
@@ -124,6 +124,218 @@ window.onload = function(){
     console.log("data per crime");
     console.log(data);
 
+    getData(response[1]);
+
+    function getData(worldData) {
+
+      console.log("world data");
+      console.log(worldData);
+      console.log(countries);
+
+      // Makes a dictionary and adds countries with two years with empty lists too.
+      dataEverything = {}
+      countries.forEach(function(d){
+        dataEverything[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
+      })
+
+      console.log("data every");
+      console.log(dataEverything);
+
+      // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN
+      worldData["data"].forEach( function (dp) {
+        for (i = 0; i < 90; i += 15) {
+          // console.log("drol");
+          // console.log(dp[i]);
+          // console.log(dp[i + 1]);
+          // console.log(dp[i + 9]);
+          // console.log(dp[i + 14]);
+          dataEverything[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
+          dataEverything[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
+          dataEverything[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
+          dataEverything[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
+          dataEverything[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
+          dataEverything[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
+          dataEverything[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
+          dataEverything[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
+          dataEverything[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
+          dataEverything[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
+          dataEverything[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
+          dataEverything[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
+          dataEverything[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
+        };
+      });
+
+      console.log("all data per country");
+      console.log(dataEverything);
+
+
+      // Makes a dictionary with all year whithin countries and there total amount of criminal activities.
+      allYears = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []}
+
+      countries.forEach(function(d) {
+        var sum2003 = 0
+        var sum2004 = 0
+        var sum2005 = 0
+        var sum2006 = 0
+        var sum2007 = 0
+        var sum2008 = 0
+        var sum2009 = 0
+        var sum2010 = 0
+        var sum2011 = 0
+        var sum2012 = 0
+        var sum2013 = 0
+        var sum2014 = 0
+        var sum2015 = 0
+
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2003"][i]) && (dataEverything[d]["2003"][i] != null)) {
+            sum2003 += dataEverything[d]["2003"][i]
+          }
+          // console.log(dataEverything[d]["2003"]);
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2004"][i]) && (dataEverything[d]["2004"][i] != null)) {
+            sum2004 += dataEverything[d]["2004"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2005"][i]) && (dataEverything[d]["2005"][i] != null)) {
+            sum2005 += dataEverything[d]["2005"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2006"][i]) && (dataEverything[d]["2006"][i] != null)) {
+            sum2006 += dataEverything[d]["2006"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2007"][i]) && (dataEverything[d]["2007"][i] != null)) {
+            sum2007 += dataEverything[d]["2007"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2008"][i]) && (dataEverything[d]["2008"][i] != null)) {
+            sum2008 += dataEverything[d]["2008"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2009"][i]) && (dataEverything[d]["2009"][i] != null)) {
+            sum2009 += dataEverything[d]["2009"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2010"][i]) && (dataEverything[d]["2010"][i] != null)) {
+            sum2010 += dataEverything[d]["2010"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2011"][i]) && (dataEverything[d]["2011"][i] != null)) {
+            sum2011 += dataEverything[d]["2011"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2012"][i]) && (dataEverything[d]["2012"][i] != null)) {
+            sum2012 += dataEverything[d]["2012"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2013"][i]) && (dataEverything[d]["2013"][i] != null)) {
+            sum2013 += dataEverything[d]["2013"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2014"][i]) && (dataEverything[d]["2014"][i] != null)) {
+            sum2014 += dataEverything[d]["2014"][i]
+          }
+        }
+        for (i = 0; i < 6; i++) {
+          if (!Number.isNaN(dataEverything[d]["2015"][i]) && (dataEverything[d]["2015"][i] != null)) {
+            sum2015 += dataEverything[d]["2015"][i]
+          }
+        }
+        allYears["2003"][d] = sum2003;
+        allYears["2004"][d] = sum2004;
+        allYears["2005"][d] = sum2005;
+        allYears["2006"][d] = sum2006;
+        allYears["2007"][d] = sum2007;
+        allYears["2008"][d] = sum2008;
+        allYears["2009"][d] = sum2009;
+        allYears["2010"][d] = sum2010;
+        allYears["2011"][d] = sum2011;
+        allYears["2012"][d] = sum2012;
+        allYears["2013"][d] = sum2013;
+        allYears["2014"][d] = sum2014;
+        allYears["2015"][d] = sum2015;
+    })
+    // console.log(oldCountryNames);
+    console.log(allYears);
+    for (year in allYears) {
+    for (country in oldCountryNames) {
+      console.log("poepie");
+      console.log([newCountryNames[country]][0]);
+      console.log([oldCountryNames[country]][0]);
+      console.log(allYears[year]);
+      // allYears[year][newCountryNames[country]][0] = allYears[oldCountryNames[country]][0]
+      // delete allYears[year][oldCountryNames[country]];
+    }
+  }
+}
+
+
+  // <form>
+  //       <label for="year">Please select a year: </label>
+  //       <label for="year">Please select a year: </label>
+  //       <input type="range" min=2009 max=2014 step=1 id="year" value=2014 oninput="selected_year.value = year.value">
+  //       <output name="selected_year" id="selected_year">2014</output>
+  //   </form>
+  //   <div id="vis">
+  //   </div>
+  //   <script src="script.js"></script>
+
+
+    console.log("alle years");
+    console.log(allYears);
+
+    createSlider(allYears["2010"])
+
+    // // Divides the data based on years instead of countries.
+    // yearDict = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []}
+    // for (i in dataEverything) {
+    //   // yearDict["2003"].push(Number(dataEverything[i]["2003"][j]))
+    //   for (j = 0; j < 6; j++) {
+    //
+    //       yearDict["2003"].push(Number(dataEverything[i]["2003"][j]))
+    //     // console.log(dataEverything[i]["2003"][j])
+    //   }
+    // }
+
+    // console.log(yearDict);
+    // console.log(countries.length);
+    console.log("doel");
+
+    var slider = d3.select("#year");
+    slider.on('change', function() {
+      console.log("dropje");
+      console.log(this.value);
+      createMap(this.value);
+    });
+
+    function createSlider(yearData) {
+      /*
+      This function creates a year slider. With help of: https://bl.ocks.org/martinjc/f2241a09bd18caad10fc7249ca5d7816
+      */
+
+      // // Divides the data based on years instead of countries.
+      // console.log(dataEverything);
+      // for (i in dataEverything) {
+      //   console.log(dataEverything[i]["2003"])
+      // }
+
+      var slider = d3.select('#yearData');
+      slider.on('change', function() {
+          createMap(this.value);
+      });
+    }
 
     function createBarchart(cont) {
       /*
@@ -201,7 +413,8 @@ window.onload = function(){
                     .attr("y", function(d, i) {
                       return yScale(d);
                     })
-                    .attr("fill", "pink")
+                    .attr("fill", "rgb(150, 247, 173)", )
+                    // rgb(59, 226, 104)", "rgb(50, 180, 90)"
 
                     // Puts the tip on or off.
                     .on('mouseover', tip.show)
@@ -312,7 +525,7 @@ window.onload = function(){
       var padding = 20;
       var radius = Math.min(widthDonut, heightDonut) / 2;
       var color = d3.scaleOrdinal()
-                    .range(["rgb(8,48,107)", "pink"]);
+                    .range(["rgb(8, 48, 107)", "pink", "rgb(155, 0, 155)"]);
 
       // Deletes the pie chart (when clicking on a new one for instance).
       if (d3.select("svg.pie")) {
@@ -386,7 +599,7 @@ window.onload = function(){
                   .attr('d', arc)
                   .attr('fill', (d,i) => color(i))
 
-        // Legend for the donut chart.
+        // Legend for the donut chart, whith help of https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e .
         var legend = d3.select(".pie")
                           .append("g")
                           .attr("class", "legend")
@@ -398,7 +611,7 @@ window.onload = function(){
 
         // Makes colored squares.
         legend.selectAll('g')
-              .data(["Men", "Women"])
+              .data(["Men", "Women", "Others"])
               .enter()
               .append('g')
               .each(function(d, i) {
@@ -413,17 +626,17 @@ window.onload = function(){
                 // Appends the text to the legend.
                 g.append("text")
                     .attr("x", width - 240)
-                    .attr("y", i * 25 + 8)
+                    .attr("y", i * 25 + 10)
                     .attr("height",30)
                     .attr("width",100)
                     .style("fill", color(i))
                     .text(d);
-        });
+              });
     }
 
     createMap()
 
-    function createMap() {
+    function createMap(year) {
       /*
       Creates a world map with scaling colors of the countries relative to the
       amount of criminal activities in that country.
@@ -433,11 +646,14 @@ window.onload = function(){
       */
 
       // Defines the margins for the svg.
-      var margin = {top: 0, right: 0, bottom: 0, left: 50},
+      var margin = {top: 0, right: 0, bottom: 0, left: 0},
                    width = 900 - margin.left - margin.right,
                    height = 700 - margin.top - margin.bottom;
 
       var path = d3.geoPath();
+
+      console.log("alle jaren");
+      console.log(allYears[year]);
 
       // Gives the svg of the world map a body with an width and height.
       var svg = d3.select("body")
@@ -459,6 +675,9 @@ window.onload = function(){
       })
 
       function ready(data) {
+
+        console.log("all crimes");
+        console.log(allCrimes);
 
         // Adds a key (crimes) and the data to each country when there is data of.
         for (const [key, value] of Object.entries(allCrimes)) {
@@ -488,13 +707,18 @@ window.onload = function(){
           }
         }
 
-        console.log(max);
         console.log("max");
+        console.log(max);
 
+        colorValues = [0, (max / 9), (max / 9) * 2, (max / 9) * 3, (max / 9) * 4, (max / 9) * 5, (max / 9) * 6, (max / 9) * 7, (max / 9) * 8, max]
+        colorMap =["rgb(229, 240, 220)", "rgb(207, 243, 208)", "rgb(181, 247, 184)", "rgb(150, 247, 173)", "rgb(95, 238, 135)", "rgb(59, 226, 104)", "rgb(50, 180, 90)", "rgb(46, 139, 87)", "rgb(39, 121, 74)"]
         // Defines the colors for the world map.
         var color = d3.scaleThreshold()
-                      .domain([0, (max / 9), (max / 9) * 2, (max / 9) * 3, (max / 9) * 4, (max / 9) * 5, (max / 9) * 6, (max / 9) * 7, (max / 9) * 8, max])
-                      .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
+                      .domain(colorValues)
+                      .range(colorMap)
+                      // .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
+
+        createLegendMap();
 
         // Makes the world map with the right colors of the countries.
         svg.append("g")
@@ -535,11 +759,70 @@ window.onload = function(){
               createDonutchart(d.properties.name);
             });
 
+
+        // Geen idee waarom dit erbij staat???
         svg.append("path")
             .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id;}))
             .attr("class", "names")
             .attr("d", path)
+
       }
+    }
+
+    function createLegendMap() {
+
+      // Gives values to the width, height and padding of the SVG and bar chart.
+      var width = 300;
+      var height = 300;
+      var padding = 20;
+
+      // Gives the svg, a body with an width and height.
+      var svg = d3.select("body")
+                  .append("svg")
+                  .attr("class", "legend map")
+                  .attr("width", width)
+                  .attr("height", height);
+
+      console.log("legend");
+
+      // Defines a legend with help of https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e .
+      var legend = svg.selectAll("legend")
+                        .append("g")
+                        .attr("class", "legend map")
+                        .attr("transform", "translate(" + 40 + "," + 40 + ")")
+                        .attr("x", 100)
+                        .attr("y", 100)
+                        .attr("height", 100)
+                        .attr("width", 100)
+                        .each(function(d) {
+                          console.log("hier komt die nooit!!");
+                          return(d)
+                        })
+
+      // Makes colored squares.
+      legend.selectAll('g')
+            .data(colorValues)
+            .enter()
+            .append('g')
+            .each(function(d, i) {
+              var g = d3.select(this);
+              console.log("en hierkomt die ook niet");
+              g.append("rect")
+               .attr("x", width - 50)
+               .attr("y", i * 25)
+               .attr("width", 10)
+               .attr("height", 10)
+               .style("fill", colorMap(i));
+
+              // Appends the text to the legend.
+              g.append("text")
+                  .attr("x", width - 240)
+                  .attr("y", i * 25 + 10)
+                  .attr("height",30)
+                  .attr("width",100)
+                  .style("fill", colorMap(i))
+                  .text(d);
+            });
     }
 
     console.log("The eind");

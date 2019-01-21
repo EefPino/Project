@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--
 Eveline Tiekink
@@ -13,14 +14,46 @@ HTML file for the finalproject about criminality.
     <title>World Map</title>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world-palestine-highres.js"></script>
+
+    <!-- misschien sommige wel nog veranderen!!!!!!!!!! Dit is voor de kaart nodig -->
+    <script src="http://d3js.org/queue.v1.min.js"></script>
+    <script src="http://d3js.org/topojson.v1.min.js"></script>
+    <script src= "d3/d3-tip.js"></script>
+
+    <!-- <script src="/libraries/highmaps.js"></script>
+    <script src="/libraries/exporting.js"></script>
+    <script src="/libraries/world_palestine.js"></script> -->
+
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script  type="text/javascript" src="map_criminality.js"></script>
+    <script type="text/javascript" src="map_criminality.js"></script>
   </head>
   <body>
     <h1> World map of the relative amount of criminality. </h1>
     <h2> Made by Eveline Tiekink - 11267321 </h2>
     <p>This is a beautiful world map of the amount of criminality (assault,
        kidnapping, theft, robbery, burglary and sexual violence) relative to the
-       amount of citizend of that country.</p>
+       amount of inhabitants of that country.</p>
+    <form>
+       <label for="year">Please select a year: </label>
+       <input type="range" min=2003 max=2015 step=1 id="year" value=2015 oninput="selected_year.value = year.value">
+       <output name="selected_year" id="selected_year">2015</output>
+    </form>
+    <div id="container"></div>
   </body>
+
 </html>
+
+
+<!-- <form>
+        <label for="year">Please select a year: </label>
+        <label for="year">Please select a year: </label>
+        <input type="range" min=2009 max=2014 step=1 id="year" value=2014 oninput="selected_year.value = year.value">
+        <output name="selected_year" id="selected_year">2014</output>
+    </form>
+    <div id="vis">
+    </div>
+    <script src="script.js"></script> -->
