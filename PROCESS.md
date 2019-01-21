@@ -29,3 +29,6 @@ Changed the color domain for the world map, trough which the colors of the count
 
 __18-01-2018__
 Made a new map_criminality.js where commented code is deleted, comments are added and wet code is translated to dry code. Also made a legend for the donut chart and changed the text which came when scrolling over the donut chart.
+
+__21-01-2018__
+Converted the csv files of all the years (from 2003 until 2015) to one json file. Tried to convert in the javascript all the data to a dictionary which can be used nicely
