@@ -31,4 +31,7 @@ __18-01-2018__
 Made a new map_criminality.js where commented code is deleted, comments are added and wet code is translated to dry code. Also made a legend for the donut chart and changed the text which came when scrolling over the donut chart.
 
 __21-01-2018__
-Converted the csv files of all the years (from 2003 until 2015) to one json file. Tried to convert in the javascript all the data to a dictionary which can be used nicely
+Converted the csv files of all the years (from 2003 until 2015) to one json file. Tried to convert in the javascript all the data to a dictionary which can be used nicely.
+
+__22-01-2018__
+The data of countries in which the crimes were nul (so no data) where changed from zero to undefined, which resulted in the right colors in the world map. When scrolling in the year slider, there exists a world map with the data of that year. This is only a new one and I tried to update the map by using an exit function, but this did not work. (I tried the exit function, because this is easier, but probably I am going to use a real update function.) Also made a navigation bar, whereby you can click on information and you get a new page with information of the site.
