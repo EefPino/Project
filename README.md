@@ -81,3 +81,4 @@ __Link__
 Probably doesn't give the right visualisation, because on my computer I have placed files on different locations.
 <a href="project/index.html">Visualisation</a>
 https://eefpino.github.io/Project/
+https://eefpino.github.io/Project/project/index.html
