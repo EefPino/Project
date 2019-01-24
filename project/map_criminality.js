@@ -11,12 +11,14 @@ Bootstrap grip
 // document.getElementsByTagName('head')[0].appendChild(script);
 
 
+// event.pageX veranderen voor tooltip
+
+
 
 var script = document.createElement('script');
 script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
-
 
 
 window.onload = function(){
@@ -45,7 +47,7 @@ window.onload = function(){
     console.log("countries");
     console.log(countries);
 
-    // Makes a dictionary and adds countries with two years with empty lists too.
+    // Makes a dictionary and adds countries as keys with two years with empty lists too.
     allData = {}
     countries.forEach(function(d){
       allData[d] = {"2010": [], "2015": []};
@@ -124,6 +126,8 @@ window.onload = function(){
     console.log("data per crime");
     console.log(data);
 
+    // Defined the data and calls the function which makes the data.
+    worldData = response[1]
     getData(response[1]);
 
     function getData(worldData) {
@@ -132,7 +136,7 @@ window.onload = function(){
       console.log(worldData);
       console.log(countries);
 
-      // Makes a dictionary and adds countries with two years with empty lists too.
+      // Makes a dictionary and adds countries as keys. The values are lists of the years.
       dataEverything = {}
       countries.forEach(function(d){
         dataEverything[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
@@ -140,6 +144,8 @@ window.onload = function(){
 
       console.log("data every");
       console.log(dataEverything);
+
+      console.log(worldData["data"]);
 
       // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN
       worldData["data"].forEach( function (dp) {
@@ -173,6 +179,7 @@ window.onload = function(){
       allYears = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []}
 
       countries.forEach(function(d) {
+
         var sum2003 = 0
         var sum2004 = 0
         var sum2005 = 0
@@ -186,6 +193,8 @@ window.onload = function(){
         var sum2013 = 0
         var sum2014 = 0
         var sum2015 = 0
+
+        // console.log(d);
 
         for (i = 0; i < 6; i++) {
           if (!Number.isNaN(dataEverything[d]["2003"][i]) && (dataEverything[d]["2003"][i] != null)) {
@@ -226,6 +235,7 @@ window.onload = function(){
         for (i = 0; i < 6; i++) {
           if (!Number.isNaN(dataEverything[d]["2010"][i]) && (dataEverything[d]["2010"][i] != null)) {
             sum2010 += dataEverything[d]["2010"][i]
+            // console.log(sum2010);
           }
         }
         for (i = 0; i < 6; i++) {
@@ -253,6 +263,77 @@ window.onload = function(){
             sum2015 += dataEverything[d]["2015"][i]
           }
         }
+
+        var years = ["2003", "2004", "2005", "2006", "2007", "2008", "2009","2010", "2011", "2012", "2013", "2014", "2015"];
+
+        for (var i in years) {
+          // console.log("jaaaaar");
+          // console.log(year);
+          if (allYears[years[i]][d] === "0") {
+            console.log("Hierbij moet die undefined worden");
+            allYears[years[i]][d] = undefined;
+          }
+        }
+
+        // Ik wil er droge code van maken, maar hoe!?!??!?!??!?!
+        var yearSum = [sum2003, sum2004, sum2005, sum2006, sum2007, sum2008, sum2009, sum2010, sum2011, sum2012, sum2013, sum2014, sum2015]
+
+        for (var i in yearSum) {
+          // console.log("jaaaaar");
+          // console.log(yearSum[i]);
+          if (yearSum[i] === 0) {
+            // console.log("Hierbij moet die undefined worden");
+            yearSum[i]= undefined;
+          }
+        }
+
+        if (sum2015 === 0) {
+          sum2015 = undefined;
+        }
+        if (sum2014 === 0) {
+          sum2014 = undefined;
+        }
+        if (sum2013 === 0) {
+          sum2013 = undefined;
+        }
+        if (sum2012 === 0) {
+          sum2012 = undefined;
+        }
+        if (sum2011 === 0) {
+          sum2011 = undefined;
+        }
+        if (sum2010 === 0) {
+          sum2010 = undefined;
+        }
+        if (sum2009 === 0) {
+          sum2009 = undefined;
+        }
+        if (sum2008 === 0) {
+          sum2008 = undefined;
+        }
+        if (sum2007 === 0) {
+          sum2015 = undefined;
+        }
+        if (sum2006 === 0) {
+          sum2006 = undefined;
+        }
+        if (sum2005 === 0) {
+          sum2005 = undefined;
+        }
+        if (sum2003 === 0) {
+          sum2003 = undefined;
+        }
+
+
+
+          // var toMatch;
+          // toMatch = 0;
+          // if (toMatch === 0) { // or !== if you're checking for not zero
+          //     document.write("no");
+          // } else {
+          //     document.write(toMatch);
+          // }
+
         allYears["2003"][d] = sum2003;
         allYears["2004"][d] = sum2004;
         allYears["2005"][d] = sum2005;
@@ -266,20 +347,32 @@ window.onload = function(){
         allYears["2013"][d] = sum2013;
         allYears["2014"][d] = sum2014;
         allYears["2015"][d] = sum2015;
+
+        // console.log("final");
+        // console.log(sum2010);
     })
     // console.log(oldCountryNames);
-    console.log(allYears);
+    // console.log(allYears);
     for (year in allYears) {
-    for (country in oldCountryNames) {
-      console.log("poepie");
-      console.log([newCountryNames[country]][0]);
-      console.log([oldCountryNames[country]][0]);
-      console.log(allYears[year]);
-      // allYears[year][newCountryNames[country]][0] = allYears[oldCountryNames[country]][0]
-      // delete allYears[year][oldCountryNames[country]];
+      for (country in oldCountryNames) {
+        // console.log("poepie");
+        // console.log([newCountryNames[country]]);
+        // console.log([oldCountryNames[country]]);
+        // console.log(allYears[year][oldCountryNames[country]]);
+        allYears[year][newCountryNames[country]] = allYears[year][oldCountryNames[country]]
+        delete allYears[year][oldCountryNames[country]];
+        // console.log(allYears[year][newCountryNames[country]]);
+      }
     }
   }
-}
+
+  for (i in oldCountryNames) {
+    allCrimes[newCountryNames[i]] = allCrimes[oldCountryNames[i]]
+    delete allCrimes[oldCountryNames[i]];
+  }
+
+  console.log("USA");
+  console.log(allYears["2010"]["USA"]);
 
 
   // <form>
@@ -296,7 +389,7 @@ window.onload = function(){
     console.log("alle years");
     console.log(allYears);
 
-    createSlider(allYears["2010"])
+    // createSlider(allYears["2010"])
 
     // // Divides the data based on years instead of countries.
     // yearDict = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []}
@@ -320,16 +413,11 @@ window.onload = function(){
       createMap(this.value);
     });
 
+    // DEZE FUNCTIE KAN WEG
     function createSlider(yearData) {
       /*
       This function creates a year slider. With help of: https://bl.ocks.org/martinjc/f2241a09bd18caad10fc7249ca5d7816
       */
-
-      // // Divides the data based on years instead of countries.
-      // console.log(dataEverything);
-      // for (i in dataEverything) {
-      //   console.log(dataEverything[i]["2003"])
-      // }
 
       var slider = d3.select('#yearData');
       slider.on('change', function() {
@@ -337,21 +425,29 @@ window.onload = function(){
       });
     }
 
-    function createBarchart(cont) {
+    function createBarchart(cont, year) {
       /*
       This function creates a bar chart of a country with different sorts of crimes.
       */
 
       // Makes a list with the amounts of criminal activities in 2010.
-      var amounts = allData[cont]["2010"]
+      // var amounts = allData[cont]["2010"]
+      var amounts = dataEverything[cont][year]
       console.log("amounts barchart");
       console.log(amounts);
 
+      // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
       for (i in amounts) {
         if (isNaN(amounts[i])) {
           amounts[i] = 0;
         }
       }
+
+      console.log("jaar");
+      console.log(year);
+
+      // console.log("all data per country");
+      // console.log(dataEverything[cont][year]);
 
       // Gives values to the width, height and padding of the SVG and bar chart.
       var widthSVG = 800;
@@ -453,16 +549,11 @@ window.onload = function(){
          .attr("transform", "translate(" + padding + "," + 0 + ")")
          .call(yAxis);
 
-      // Gives a title to the bar chart which changes for each country..
+      // Gives a title to the bar chart which changes for each country.
       svg.append("text")
          .attr("class", "text")
-         .text("The amount of criminality per 100.000 inhabitants in ")
+         .text("The amount of criminality per 100.000 inhabitants in " + cont)
          .attr("transform", "translate(" + padding2 * 4 + "," + padding2 + ")");
-
-      svg.append("text")
-          .attr("class", "text")
-          .text(cont)
-          .attr("transform", "translate(" + (padding * 11 + 17) + "," + padding2 + ")");
 
       // Gives a title to the x axis.
       svg.append("text")
@@ -484,19 +575,59 @@ window.onload = function(){
     }
 
 
-    function createDonutchart(cont) {
+    function createDonutchartData(cont, year) {
       /*
       Creates a Donutchart with the amount of women and men which commit
       criminal activities for each country.
       */
 
+      // // Makes a dictionary and adds countries with two years with empty lists too.
+      // dataEverything = {}
+      // countries.forEach(function(d){
+      //   dataEverything[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
+      // })
+      //
+      // console.log("data every");
+      // console.log(dataEverything);
+      //
+      // // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN
+      // worldData["data"].forEach( function (dp) {
+      //   for (i = 0; i < 90; i += 15) {
+      //     // console.log("drol");
+      //     // console.log(dp[i]);
+      //     // console.log(dp[i + 1]);
+      //     // console.log(dp[i + 9]);
+      //     // console.log(dp[i + 14]);
+      //     dataEverything[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
+      //     dataEverything[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
+      //     dataEverything[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
+      //     dataEverything[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
+      //     dataEverything[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
+      //     dataEverything[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
+      //     dataEverything[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
+      //     dataEverything[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
+      //     dataEverything[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
+      //     dataEverything[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
+      //     dataEverything[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
+      //     dataEverything[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
+      //     dataEverything[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
+      //   };
+      // });
+      //
+      console.log("all data per country");
+      console.log(dataEverything);
+
       // Generates a dictionary for each country with lists of 2010 and 2015.
       genderData = {}
 
+
       countries.forEach(function(d){
+        // genderData[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
         genderData[d] = {"2010": [], "2015": []};
       })
 
+      console.log("year donut");
+      console.log(year);
       // Appends the amount of women and men which commit criminal activities
       // to the dictionary.
       dataWorld["data"].forEach( function (dp) {
@@ -506,6 +637,51 @@ window.onload = function(){
         }
       })
 
+      console.log("data WOLRD");
+      console.log(worldData.data);
+
+      // for (country in dataEverything) {
+      //   // console.log(i);
+      //   // console.log(dataEverything[country][year]);
+      //   genderData[countr][year].push(dataEverything[country][year])
+      //   console.log(genderData[country][year]); // dit is het land
+      //   // genderData[year][country].push(dataEverything[country][year])
+      // }
+
+      console.log(genderData);
+      console.log(worldData["data"]);
+
+      // worldData["data"].forEach( function (dp) {
+      //   for (i = 90; i < 130; i += 15) {
+      //     console.log(dp[i]);
+      //     console.log(dp[i+1]);
+      //     console.log(dp);
+      //     console.log(genderData[dp[i + 1]]["2015"]); // deze bestaat wel, maar die van 2015 bestaat niet.
+      //     console.log(dp[i + 14]);
+      //     genderData[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
+      //     genderData[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
+      //     genderData[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
+      //     genderData[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
+      //     genderData[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
+      //     genderData[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
+      //     genderData[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
+      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
+      //     genderData[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
+      //     genderData[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
+      //     genderData[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
+      //     genderData[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
+      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
+      //   }
+      // })
+
+      console.log(genderData);
+
+      // dataEverything.forEach( function (dp) {
+      //   console.log(dp);
+      // });
+
+
+
       // Change the names of the countries to names which are in accordance with the data map countries.
       for (i in oldCountryNames) {
         genderData[newCountryNames[i]] = genderData[oldCountryNames[i]]
@@ -514,6 +690,30 @@ window.onload = function(){
 
       console.log("gender");
       console.log(genderData);
+
+      // Checks if there is data for the amount of criminal activities for men and women. DIT NOG MET WIFI CHECKEN / INTERNET
+      for (i in genderData[cont]["year"]) {
+        if (genderData[cont]["year"][i] == null) {
+          console.log("dit is bij nul data");
+          return "There is no data about the gender who commits a criminal activity of this country in this year."
+        }
+        else {
+
+          // Hier zou dan wel nog andere data inkomen, bijv:
+          // createDonutchart(genderData[cont]["year"])
+          // createDonutchart(cont, year)
+          console.log("wel data");
+          createDonutchart(genderData[cont]["2010"])
+        }
+      }
+
+      createDonutchart(genderData[cont]["2010"])
+
+    }
+
+    function createDonutchart(contens) {
+
+      console.log("je bent ergens");
 
       // Defines the margins for the svg and donut and defines the colors
       // and other values for the donutchart.
@@ -556,13 +756,14 @@ window.onload = function(){
       // Defines a pie for the donut chart.
       var pie = d3.pie()
                   .value(function(d, i) {
-                    return genderData[cont]["2010"][i]
+                    // return genderData[cont]["2010"][i]
+                    return contens[i]
                   })
                   .sort(null);
 
       // Defines the whole donut chart.
       var path = g.selectAll('path')
-                  .data(pie(cont))
+                  .data(pie(contens))
                   .enter()
                   .append("g")
                   .on("mouseover", function(d) {
@@ -634,7 +835,7 @@ window.onload = function(){
               });
     }
 
-    createMap()
+    createMap("2015")
 
     function createMap(year) {
       /*
@@ -655,13 +856,17 @@ window.onload = function(){
       console.log("alle jaren");
       console.log(allYears[year]);
 
+      // Deletes the world (when scrolling to anther year for instance). WERKT NIET!!!!!!
+      d3.selectAll(".map").remove();
+
       // Gives the svg of the world map a body with an width and height.
       var svg = d3.select("body")
                   .append("svg")
+                  .attr('class', 'map')
                   .attr("width", width)
                   .attr("height", height)
-                  .append('g')
-                  .attr('class', 'map');
+                  .append('g');
+
 
       // Makes a map by takning the coordinates of each country.
       var projection = d3.geoMercator()
@@ -680,7 +885,7 @@ window.onload = function(){
         console.log(allCrimes);
 
         // Adds a key (crimes) and the data to each country when there is data of.
-        for (const [key, value] of Object.entries(allCrimes)) {
+        for (const [key, value] of Object.entries(allYears[year])) {
           data.features.forEach(function(d) {
             if (d.properties.name == key) {
               d.crimes = value
@@ -753,10 +958,13 @@ window.onload = function(){
                   .style("stroke-width",0.3);
                 })
             .on("click", function(d) {
+              console.log("jaaar");
+              console.log(year);
 
               // Makes a bar- and donutchart when clicking on the donut chart.
-              createBarchart(d.properties.name)
-              createDonutchart(d.properties.name);
+              // createBarchart(d.properties.name, year)
+              createBarchart(d.properties.name, year)
+              createDonutchartData(d.properties.name, year);
             });
 
 
@@ -771,7 +979,7 @@ window.onload = function(){
 
     function createLegendMap() {
 
-      // Gives values to the width, height and padding of the SVG and bar chart.
+      // Gives values to the width, height and padding of the SVG.
       var width = 300;
       var height = 300;
       var padding = 20;
