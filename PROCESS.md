@@ -41,3 +41,4 @@ The title of the bar chart and pie chart changed when chosing another country, b
 
 __24-01-2018__
 Now the pie chart also changes when another year is selected and there is clicked at a country.
+Dit naar andere dag, want deze dag was Hackaton.
