@@ -108,8 +108,6 @@ window.onload = function(){
                  "Sexual violence", "Theft"];
     data = {}
 
-    console.log(dataSorts);
-
     // Adds each crime with their data to the dictionary.
     dataSorts.forEach(function(ds){
       data[ds] = [];
@@ -145,6 +143,8 @@ window.onload = function(){
       console.log("data every");
       console.log(dataEverything);
 
+      console.log("world data de 1ste");
+
       console.log(worldData["data"]);
 
       // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN
@@ -153,7 +153,7 @@ window.onload = function(){
           // console.log("drol");
           // console.log(dp[i]);
           // console.log(dp[i + 1]);
-          // console.log(dp[i + 9]);
+          // console.log(dp[i + 2]);
           // console.log(dp[i + 14]);
           dataEverything[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
           dataEverything[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
@@ -171,8 +171,11 @@ window.onload = function(){
         };
       });
 
-      console.log("all data per country");
-      console.log(dataEverything);
+      // Belgie: 930.42 - 53.38 - 9.62 - 594.26
+      // Vanuit data world: 2.084,62 - 2.158,03 - 594.26 - 9.62 - 53.38 - 930.42
+
+      // console.log("all data per country");
+      // console.log(dataEverything);
 
 
       // Makes a dictionary with all year whithin countries and there total amount of criminal activities.
@@ -371,8 +374,30 @@ window.onload = function(){
     delete allCrimes[oldCountryNames[i]];
   }
 
-  console.log("USA");
-  console.log(allYears["2010"]["USA"]);
+  // MISSCHEIN KAN DIT OOK AL EERDER EN DAN NIET VOOR DIE ANDERE OOK NOG MOETEN VERANDEREN
+  for (i in oldCountryNames) {
+    dataEverything[newCountryNames[i]] = dataEverything[oldCountryNames[i]]
+    delete dataEverything[oldCountryNames[i]];
+  }
+
+  for (i in dataEverything) {
+    console.log(i);
+    for (j in dataEverything[i]) {
+      console.log(j);
+      console.log(dataEverything[i][j])
+      console.log(dataEverything[i][j].length);
+    }
+    // console.log(dataEverything[i]);
+  }
+  // dataEverything.forEach( function (dp) {
+  //   console.log(dp);
+  // })
+  // for (iets in dataEverything[cont][year]) {
+  //   console.log(iets);
+  // }
+
+  // console.log("USA");
+  // console.log(allYears["2010"]["USA"]);
 
 
   // <form>
@@ -386,8 +411,8 @@ window.onload = function(){
   //   <script src="script.js"></script>
 
 
-    console.log("alle years");
-    console.log(allYears);
+    // console.log("alle years");
+    // console.log(allYears);
 
     // createSlider(allYears["2010"])
 
@@ -404,12 +429,12 @@ window.onload = function(){
 
     // console.log(yearDict);
     // console.log(countries.length);
-    console.log("doel");
+    // console.log("doel");
 
     var slider = d3.select("#year");
     slider.on('change', function() {
-      console.log("dropje");
-      console.log(this.value);
+      // console.log("dropje");
+      // console.log(this.value);
       createMap(this.value);
     });
 
@@ -432,19 +457,26 @@ window.onload = function(){
 
       // Makes a list with the amounts of criminal activities in 2010.
       // var amounts = allData[cont]["2010"]
+      console.log(dataEverything["Russian Federation"]);
       var amounts = dataEverything[cont][year]
-      console.log("amounts barchart");
-      console.log(amounts);
+      // console.log("amounts barchart");
+      // console.log(amounts);
 
-      // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
-      for (i in amounts) {
-        if (isNaN(amounts[i])) {
-          amounts[i] = 0;
-        }
-      }
+      // // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
+      // for (i in amounts) {
+      //   if (isNaN(amounts[i])) {
+      //     amounts[i] = 0;
+      //     console.log("er is data 0");
+      //     // Gives a title to the bar chart which changes for each country.
+      //     svg.append("text")
+      //        .attr("class", "text")
+      //        .text("For this country not all the data is available.")
+      //        .attr("transform", "translate(" + padding2 * 6 + "," + padding2 + ")");
+      //   }
+      // }
 
-      console.log("jaar");
-      console.log(year);
+      // console.log("jaar");
+      // console.log(year);
 
       // console.log("all data per country");
       // console.log(dataEverything[cont][year]);
@@ -469,6 +501,26 @@ window.onload = function(){
                   .attr("class", "bar")
                   .attr("width", widthSVG)
                   .attr("height", heightSVG);
+
+      console.log("amounts");
+      console.log(amounts);
+
+
+      // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
+      for (i in amounts) {
+        if (isNaN(amounts[i])) {
+          amounts[i] = 0;
+          console.log("er is data 0");
+          // Gives a title to the bar chart which changes for each country.
+          svg.append("text")
+             .attr("class", "text")
+             .text("For this country not all the data is available.")
+             .style("font-size", "12px")
+             .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
+        }
+      }
+
+      // Volgorde: "Assaults", "Burglary", "Kidnapping", "Robbery", "Sexual violence", "Theft"
 
       // Defines a tip with a class and the specific value.
       var tip = d3.tip()
@@ -581,106 +633,52 @@ window.onload = function(){
       criminal activities for each country.
       */
 
-      // // Makes a dictionary and adds countries with two years with empty lists too.
-      // dataEverything = {}
-      // countries.forEach(function(d){
-      //   dataEverything[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
-      // })
-      //
-      // console.log("data every");
+      // console.log("all data per country");
       // console.log(dataEverything);
-      //
-      // // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN
-      // worldData["data"].forEach( function (dp) {
-      //   for (i = 0; i < 90; i += 15) {
-      //     // console.log("drol");
-      //     // console.log(dp[i]);
-      //     // console.log(dp[i + 1]);
-      //     // console.log(dp[i + 9]);
-      //     // console.log(dp[i + 14]);
-      //     dataEverything[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
-      //     dataEverything[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
-      //     dataEverything[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
-      //     dataEverything[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
-      //     dataEverything[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
-      //     dataEverything[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
-      //     dataEverything[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
-      //     dataEverything[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
-      //     dataEverything[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
-      //     dataEverything[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
-      //     dataEverything[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
-      //     dataEverything[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
-      //     dataEverything[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
-      //   };
-      // });
-      //
-      console.log("all data per country");
-      console.log(dataEverything);
 
       // Generates a dictionary for each country with lists of 2010 and 2015.
       genderData = {}
 
 
       countries.forEach(function(d){
-        // genderData[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
-        genderData[d] = {"2010": [], "2015": []};
+        genderData[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
       })
 
-      console.log("year donut");
-      console.log(year);
+      // console.log("year donut");
+      // console.log(year);
       // Appends the amount of women and men which commit criminal activities
       // to the dictionary.
-      dataWorld["data"].forEach( function (dp) {
-        for (i = 24; i < 32; i += 4) {
-          genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
-          genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]));
-        }
-      })
-
-      console.log("data WOLRD");
-      console.log(worldData.data);
-
-      // for (country in dataEverything) {
-      //   // console.log(i);
-      //   // console.log(dataEverything[country][year]);
-      //   genderData[countr][year].push(dataEverything[country][year])
-      //   console.log(genderData[country][year]); // dit is het land
-      //   // genderData[year][country].push(dataEverything[country][year])
-      // }
-
-      console.log(genderData);
-      console.log(worldData["data"]);
-
-      // worldData["data"].forEach( function (dp) {
-      //   for (i = 90; i < 130; i += 15) {
-      //     console.log(dp[i]);
-      //     console.log(dp[i+1]);
-      //     console.log(dp);
-      //     console.log(genderData[dp[i + 1]]["2015"]); // deze bestaat wel, maar die van 2015 bestaat niet.
-      //     console.log(dp[i + 14]);
-      //     genderData[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
-      //     genderData[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
-      //     genderData[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
-      //     genderData[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
-      //     genderData[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
-      //     genderData[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
-      //     genderData[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
-      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
-      //     genderData[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
-      //     genderData[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
-      //     genderData[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
-      //     genderData[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
-      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
+      // dataWorld["data"].forEach( function (dp) {
+      //   for (i = 24; i < 32; i += 4) {
+      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
+      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]));
       //   }
       // })
 
-      console.log(genderData);
-
-      // dataEverything.forEach( function (dp) {
-      //   console.log(dp);
-      // });
+      // console.log("data WOLRD de tweede 2"); // dit is echt gewoon precies hetzelfde als de eerste keer de world data !!
+      // console.log(worldData.data);
 
 
+      worldData["data"].forEach( function (dp) {
+        for (i = 90; i < 120; i += 15) {
+          // console.log(dp[i]);
+          // console.log(genderData[dp[i + 1]]["2015"]); // deze bestaat wel, maar die van 2015 bestaat niet.
+          // console.log(dp[i + 14]);
+          genderData[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
+          genderData[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
+          genderData[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
+          genderData[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
+          genderData[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
+          genderData[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
+          genderData[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
+          genderData[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
+          genderData[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
+          genderData[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
+          genderData[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
+          genderData[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
+          genderData[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
+        }
+      });
 
       // Change the names of the countries to names which are in accordance with the data map countries.
       for (i in oldCountryNames) {
@@ -688,32 +686,103 @@ window.onload = function(){
         delete genderData[oldCountryNames[i]];
       }
 
-      console.log("gender");
-      console.log(genderData);
+      console.log("genderdata");
+      // console.log(genderData);
+      console.log(genderData[cont][year]);
+      // console.log(genderData[cont][year].length);
+      console.log(genderData[cont][year][0] );
 
-      // Checks if there is data for the amount of criminal activities for men and women. DIT NOG MET WIFI CHECKEN / INTERNET
-      for (i in genderData[cont]["year"]) {
-        if (genderData[cont]["year"][i] == null) {
-          console.log("dit is bij nul data");
-          return "There is no data about the gender who commits a criminal activity of this country in this year."
-        }
-        else {
+      var nanValue = NaN;
+      console.log(typeof(genderData[cont][year][0]) == "NaN");
 
-          // Hier zou dan wel nog andere data inkomen, bijv:
-          // createDonutchart(genderData[cont]["year"])
-          // createDonutchart(cont, year)
-          console.log("wel data");
-          createDonutchart(genderData[cont]["2010"])
+
+
+      if (genderData[cont][year].length == 0) {
+        // Hier moet die de donutchart gaan deleten!!! (Dat is dan die van het vorige land.)
+        console.log("nu is de lijst misschien leeg");
+        // Deletes the pie chart (when clicking on a new one for instance).
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
         }
       }
 
-      createDonutchart(genderData[cont]["2010"])
+
+
+
+      else if (genderData[cont][year][0] == 0 || genderData[cont][year][1] == 0) {
+        console.log("hier is een waarde 0");
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
+        }
+      }
+
+      else if (isNaN(genderData[cont][year][0] == 0) || isNaN(genderData[cont][year][1] == 0)) {
+        console.log("hier is een waarde NaN");
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
+        }
+      }
+
+      // Deze werkt ook niet...
+      else if ((genderData[cont][year][0].isNaN) || (genderData[cont][year][1].isNaN)) {
+        console.log("hier is een waarde NaN");
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
+        }
+      }
+
+      // Deze heb ik nergens voor nodig!!!!! Probeersel
+      else if ((genderData[cont][year][0] === undefined) || (genderData[cont][year][1] === undefined)) {
+        console.log("hier is een waarde undefined");
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
+        }
+      }
+
+
+      // else if ((typeOf(genderData[cont][year][0] == "NaN")) || (typeOf(genderData[cont][year][0] == "NaN")) {
+      //   console.log("hier is een waarde NaN");
+      //   if (d3.select("svg.pie")) {
+      //     d3.select("svg.pie").remove().exit();
+      //   }
+      // }
+
+
+
+
+
+
+      else {
+
+        // Hier zou dan wel nog andere data inkomen, bijv:
+        // createDonutchart(genderData[cont]["year"])
+        // createDonutchart(cont, year)
+
+        // Hij komt denk ik altijd hierin!!!!
+        console.log("wel data");
+        createDonutchart(genderData[cont][year], cont)
+      };
+
+
+      // // Checks if there is data for the amount of criminal activities for men and women. DIT NOG MET WIFI CHECKEN / INTERNET
+      // for (i in genderData[cont][year]) {
+      //     // Bij Canada 2015 bijvoorbeeld komt die helemaal neit hierin!!!!!!!!!!!!
+      //   if (genderData[cont][year] == undefined) {
+      //     console.log("nu is de lijst misschien leeg");
+      //   }
+      //   else if (genderData[cont][year][i] == null)
+      //     // return "There is no data about the gender who commits a criminal activity of this country in this year."
+      //   }
+      // }
+
+      // createDonutchart(genderData[cont]["2010"])
 
     }
 
-    function createDonutchart(contens) {
+    function createDonutchart(data, cont) {
 
-      console.log("je bent ergens");
+      // console.log("je bent bij de donutchart");
+      // console.log(data);
 
       // Defines the margins for the svg and donut and defines the colors
       // and other values for the donutchart.
@@ -745,7 +814,7 @@ window.onload = function(){
       // Gives a title to the donut chart.
       svg.append("text")
          .attr("class", "text")
-         .text("The gender for criminal activities")
+         .text("The gender for criminal activities in " + cont)
          .attr("transform", "translate(" + padding * 7 + "," + padding + ")");
 
       // Defines the arcade of the donut.
@@ -757,13 +826,15 @@ window.onload = function(){
       var pie = d3.pie()
                   .value(function(d, i) {
                     // return genderData[cont]["2010"][i]
-                    return contens[i]
+                    return data[i]
                   })
                   .sort(null);
 
       // Defines the whole donut chart.
       var path = g.selectAll('path')
-                  .data(pie(contens))
+
+      // misschien nog iets anders ipv cont!!!!!
+                  .data(pie(cont))
                   .enter()
                   .append("g")
                   .on("mouseover", function(d) {
