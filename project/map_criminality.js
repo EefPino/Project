@@ -163,17 +163,44 @@ window.onload = function(){
             currentCountry = thing;
           }
           else {
+            // if (your_string.indexOf('hello') > -1)
+            // console.log(thing);
             if (Object.keys(allDataData[dataSorts[counter]]).indexOf(currentCountry) === -1) {
               allDataData[dataSorts[counter]][currentCountry] = {};
             };
-            // console.log(thing);
-            allDataData[dataSorts[counter]][currentCountry][allYears2[counter2]] = Number(thing);
+            // rnum = rnum.split("F0").pop()
+
+            // && (thing.indexOf(",") === -1
+            // if (thing !== null ) {
+            //   thing = thing.split(",")
+            //   console.log(thing[0]);
+            //   console.log(thing[1]);
+            //   // thing = thing.replace(",", "");
+            // }
+
+            // Convert the string to a digit with two decimals.
+            thing = Number(thing)
+            thing.toFixed(2)
+            allDataData[dataSorts[counter]][currentCountry][allYears2[counter2]] = thing;
             counter2 += 1;
           };
         };
       };
     };
+    console.log("all data data Tho");
     console.log(allDataData)
+
+    for (i in dataSorts) {
+      console.log(dataSorts[i]);
+      for (j in oldCountryNames) {
+        allDataData[dataSorts[i]][newCountryNames[j]] = allDataData[dataSorts[i]][oldCountryNames[j]]
+        delete allDataData[dataSorts[i]][oldCountryNames[j]];
+      }
+    }
+
+    console.log(allDataData);
+
+
 
     function getData(worldData) {
 
@@ -395,6 +422,28 @@ window.onload = function(){
           //     document.write(toMatch);
           // }
 
+
+        // console.log(typeof sum2003);
+        // console.log("sum 2003");
+        // console.log(Number(sum2003));
+        sum2003 = Number(sum2003);
+
+        // JE KAN NIET OP 2 DECIMALEN AFRONDEN WANT DAN WORDT DIE NaN IN DE WORLD MAP
+
+        // sum2003 = sum2003.toFixed(2);
+        // sum2004 = sum2004.toFixed(2);
+        // sum2005 = sum2005.toFixed(2);
+        // sum2006 = sum2006.toFixed(2);
+        // sum2007 = sum2007.toFixed(2);
+        // sum2008 = sum2008.toFixed(2);
+        // sum2009 = sum2009.toFixed(2);
+        // sum2010 = sum2010.toFixed(2);
+        // sum2011 = sum2011.toFixed(2);
+        // sum2012 = sum2012.toFixed(2);
+        // sum2013 = sum2013.toFixed(2);
+        // sum2014 = sum2014.toFixed(2);
+        // sum2015 = sum2015.toFixed(2);
+
         allYears["2003"][d] = sum2003;
         allYears["2004"][d] = sum2004;
         allYears["2005"][d] = sum2005;
@@ -513,15 +562,52 @@ window.onload = function(){
       This function creates a bar chart of a country with different sorts of crimes.
       */
 
+//       if (typeof foo !== 'undefined') {
+//   // Now we know that foo is defined, we are good to go.
+// }
+
       amount = []
       for (i in dataSorts) {
         // console.log(dataSorts[i]);
+        // console.log(allDataData[dataSorts[i]]);console.log();
+        console.log(cont);
+        // // Als je [year] weghaalt dan doet die het wel!!!!
         // console.log(allDataData[dataSorts[i]]);
-        amount.push(allDataData[dataSorts[i]]["Albania"][year])
-        console.log(allDataData[dataSorts[i]]["Albania"][year])
+        if (typeof allDataData[dataSorts[i]][cont] !== 'undefined') {
+          console.log("drol");
+          amount.push(allDataData[dataSorts[i]][cont][year])
+          console.log(allDataData[dataSorts[i]][cont][year])
+        }
+        else {
+          // vDIT HIERONDER KAN OOK ERGENS HIER EN DAN SVG VAN TEVOREN AANMAKEN
+          // svg.append("text")
+          //    .attr("class", "text")
+          //    .text("For this country not all the data is available.")
+          //    .style("font-size", "12px")
+          //    .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
+          amount.push(0)
+          console.log(dataEverything[cont]);
+        }
       }
-      console.log("roekoe");
+      console.log("roekoe amount");
       console.log(amount);
+
+      // for (i in amount) {
+      //   console.log(amount[i]);
+      //   if
+      // }
+
+      var zerocount = 0;
+
+      for(i in amount) {
+        if(amount[i] !== 0) {
+          zerocount = 1;
+          break;
+        }
+      }
+
+
+
       // console.log(allDataData["Burglary"]["Albania"])
 
       // console.log(allDataData)
@@ -529,7 +615,7 @@ window.onload = function(){
       // Makes a list with the amounts of criminal activities in 2010.
       // var amounts = allData[cont]["2010"]
       // console.log(dataEverything);
-      var amounts = dataEverything[cont][year]
+      // var amounts = dataEverything[cont][year]
       // console.log("amounts barchart");
       // console.log(amounts);
 
@@ -573,14 +659,21 @@ window.onload = function(){
                   .attr("width", widthSVG)
                   .attr("height", heightSVG);
 
-      console.log("amounts");
-      console.log(amounts);
+      // IK BEGRIJP NIET WAAROM DEZE ONDER DE SVG MOET STAAN EN DE ANDERE EER WEL BOVEN KAN???
+      if(!zerocount) {
+        // Deletes the bar chart (when clicking on a new country without data).
+        if (d3.select("svg.bar")) {
+          console.log("verwijder hem");
+          d3.select("svg.bar").remove().exit();
+        }
+        console.log('all are zero');
+      }
 
 
       // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
-      for (i in amounts) {
-        if (isNaN(amounts[i])) {
-          amounts[i] = 0;
+      for (i in amount) {
+        if (isNaN(amount[i])) {
+          amount[i] = 0;
           console.log("er is data 0");
           // Gives a title to the bar chart which changes for each country.
           svg.append("text")
@@ -590,7 +683,22 @@ window.onload = function(){
              .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
         }
       }
-      console.log(amounts);
+      // console.log(amounts);
+
+      //  DIT KAN OOK NAAR BOVEN VERPLAATST WORDEN!!!
+      for (i in amount) {
+        if (isNaN(amount[i])) {
+          console.log(i);
+          amount[i] = 0;
+          console.log("er is data 0");
+          // Gives a title to the bar chart which changes for each country.
+          svg.append("text")
+             .attr("class", "text")
+             .text("For this country not all the data is available.")
+             .style("font-size", "12px")
+             .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
+        }
+      }
 
       // Volgorde: "Assaults", "Burglary", "Kidnapping", "Robbery", "Sexual violence", "Theft"
 
@@ -635,7 +743,6 @@ window.onload = function(){
                       return yScale(d);
                     })
                     .attr("fill", "rgb(150, 247, 173)", )
-                    // rgb(59, 226, 104)", "rgb(50, 180, 90)"
 
                     // Puts the tip on or off.
                     .on('mouseover', tip.show)
@@ -1027,6 +1134,7 @@ window.onload = function(){
 
         // console.log("all crimes");
         // console.log(allCrimes);
+        console.log(data.features);
 
         // Adds a key (crimes) and the data to each country when there is data of.
         for (const [key, value] of Object.entries(allYears[year])) {
