@@ -42,3 +42,5 @@ The title of the bar chart and pie chart changed when chosing another country, b
 __25-01-2018__
 Now the pie chart also changes when another year is selected and there is clicked at a country. Solved a bug in which there was not made a bar chart when clicking on a country when just one data of one crime was missing. Also solved another bug in which the old and new naming of the countries were used mixed up. Before the donut chart showed the data also when there was just data of men or women and now only if there is data of both. 
 
+__28-01-2018__
+Made a function in which you can put one sort of crime and you can get a world map of that sort of crime only. Also produced in the navigation bar e dropdown.
