@@ -26,14 +26,13 @@ function mapOneCrime(x){
   a45e8709648cafbbf01c78c76dfa53e31087e713/world_countries.json
   */
 
-  // Defines the margins for the svg.
-  var margin = {top: 0, right: 0, bottom: 0, left: 0},
-               width = 900 - margin.left - margin.right,
-               height = 700 - margin.top - margin.bottom;
+  // Defines the width and height for the svg.
+  width = 900;
+  height = 700;
 
   var path = d3.geoPath();
 
-  // Deletes the world (when scrolling to anther year for instance). WERKT NIET!!!!!!
+  // Deletes the world (when scrolling to anther year for instance). WERKT NIET!!!!!! HIER NOG NAAR KIJKEN
   d3.selectAll(".map").remove();
 
   // Gives the svg of the world map a body with an width and height.
@@ -45,7 +44,7 @@ function mapOneCrime(x){
               .append('g');
 
 
-  // Makes a map by takning the coordinates of each country.
+  // Makes a map by taking the coordinates of each country.
   var projection = d3.geoMercator()
                      .scale(130)
                      .translate( [width / 2, height / 1.5]);
@@ -56,7 +55,9 @@ function mapOneCrime(x){
     ready(response)
   })
 
+  // Makes the world map with the right data.
   function ready(data) {
+
     console.log("sorten crimes");
     //   console.log(dataSorts);
     console.log(allDataData[crime]);
@@ -106,14 +107,13 @@ function mapOneCrime(x){
     console.log(max);
     console.log(colorValues);
 
+    // Defines the colors for the world map.
     colorValues = [0, (max / 9), (max / 9) * 2, (max / 9) * 3, (max / 9) * 4, (max / 9) * 5, (max / 9) * 6, (max / 9) * 7, (max / 9) * 8, max]
     colorMap =["rgb(229, 240, 220)", "rgb(207, 243, 208)", "rgb(181, 247, 184)", "rgb(150, 247, 173)", "rgb(95, 238, 135)", "rgb(59, 226, 104)", "rgb(50, 180, 90)", "rgb(46, 139, 87)", "rgb(39, 121, 74)"]
-    // Defines the colors for the world map.
+
     var color = d3.scaleThreshold()
                   .domain(colorValues)
                   .range(colorMap)
-                  // .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
-
 
     // createLegendMap();
 
@@ -131,7 +131,7 @@ function mapOneCrime(x){
         .style('stroke-width', 1.5)
         .style("opacity",0.8)
 
-        // Nog veranderen naar css stylesheet!! Styles the tooltips.
+        // Nog veranderen naar css stylesheet!! Styles the tooltips. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         .style("stroke","white")
         .style('stroke-width', 0.3)
         .on('mouseover',function(d){
@@ -152,13 +152,12 @@ function mapOneCrime(x){
         .on("click", function(d) {
 
           // Makes a bar- and donutchart when clicking on the donut chart.
-          // createBarchart(d.properties.name, year)
           createBarchart(d.properties.name, year)
           createDonutchartData(d.properties.name, year);
         });
 
 
-    // Geen idee waarom dit erbij staat???
+    // Geen idee waarom dit erbij staat?????????????????????????????!!!!!!!!!!!!!!
     svg.append("path")
         .datum(topojson.mesh(data.features, function(a, b) { return a.id !== b.id;}))
         .attr("class", "names")
@@ -182,8 +181,6 @@ window.onload = function(){
 
     // Defines the data.
     dataWorld = response[0];
-    // console.log(dataWorld);
-
 
     // Makes a list with all the countries.
     var countries = [];
@@ -192,16 +189,18 @@ window.onload = function(){
         if (j % 4 == 1) {
             if(jQuery.inArray(dataWorld["data"][i][j], countries) == - 1) {
               countries.push(dataWorld["data"][i][j]);
-            }
-          }
-        }
-      }
+            };
+          };
+        };
+      };
+
+    // !!!!!!!!!!!!!!!!!!! KAN WEG !!!!!!!!!!!!!!!!!!!
 
     // Makes a dictionary and adds countries as keys with two years with empty lists too.
     allData = {}
     countries.forEach(function(d){
       allData[d] = {"2010": [], "2015": []};
-    })
+    });
 
     // Adds the data of the years of the countries.
     dataWorld["data"].forEach( function (dp) {
@@ -224,8 +223,7 @@ window.onload = function(){
       allCrimes[d] = sum;
     })
 
-    // console.log("all crimes voor 2010 ");
-    // console.log(allCrimes);
+    // !!!!!!!!!!!!!!!!!!! KAN WEG !!!!!!!!!!!!!!!!!!!
 
     // Makes lists with "old" country names and "new" country names.
     oldCountryNames = ["Bahamas", "Bolivia (Plurinational State of)", "Brunei Darussalam",
@@ -238,7 +236,8 @@ window.onload = function(){
                        "Iran", "Iraq", "Kososvo", "North Korea", "Moldova", "Russia",
                        "Republic of Serbia", "Syria", "Macedonia", "England", "USA"]
 
-    // Change the names of the countries to names which are in accordance with the data map countries.
+    // Changes the names of the countries to names which are in accordance with
+    // the data map countries.
     for (i in oldCountryNames) {
       allCrimes[newCountryNames[i]] = allCrimes[oldCountryNames[i]]
       delete allCrimes[oldCountryNames[i]];
@@ -254,19 +253,12 @@ window.onload = function(){
     for (i in newCountries) {
       for (j in oldCountryNames) {
         if (oldCountryNames[j] == newCountries[i]) {
-            // console.log(newCountries[i]);
             newCountries[i] = newCountryNames[j]
-            // delete newCountries[i];
         }
       }
     }
-    console.log(newCountries);
-    console.log(countries);
-    // for (i in oldCountryNames) {
-    //   countries = allData[oldCountryNames[i]]
-    //   delete allData[oldCountryNames[i]];
-    // }
 
+    // !!!!!!!!!!!!!!!!!!!! KAN WEG !!!!!!!!!!!!!!!!!!!!!!!
     // Makes a dictionary seperated by the different sorts of crimes.
     dataSorts = ["Assaults", "Burglary", "Kidnapping", "Robbery",
                  "Sexual violence", "Theft"];
@@ -285,16 +277,13 @@ window.onload = function(){
       })
     }
 
-    // console.log("data per crime 2010");
-    // console.log(data);
+    // !!!!!!!!!!!!!!!!!!! KAN WEG !!!!!!!!!!!!!!!!!!!
 
     // Defined the data and calls the function which makes the data.
     worldData = response[1]
     getData(response[1]);
 
-    console.log("drollie");
-
-    // Defines list and a new dictionary for data, the years, worldparts,
+    // Defines lists and a new dictionary for data, the years, worldparts,
     // useless parts of the data and a true variable when it is done.
     allDataData = {};
     var allYearsList = Object.keys(allYears);
@@ -313,55 +302,54 @@ window.onload = function(){
 
       // Loops to get all values apart from eachother.
       for (j in worldData["data"][i]) {
-        var thing = worldData["data"][i][j];
-        // console.log(thing);
+        var dataValue = worldData["data"][i][j];
+
         // Skips the useless data.
-        if (thing !== null && useless.indexOf(thing[0]) !== -1) {
+        if (dataValue !== null && useless.indexOf(dataValue[0]) !== -1) {
           break;
         }
-        else if (thing !== null && thing.length > 5 && useless.indexOf(thing.split(' ')[0]) !== -1) {
+        else if (dataValue !== null && dataValue.length > 5 && useless.indexOf(dataValue.split(' ')[0]) !== -1) {
           break;
         }
-        else if (worldParts.indexOf(thing) !== -1) {
+        else if (worldParts.indexOf(dataValue) !== -1) {
           continue;
         }
         else {
 
-          if (isNaN(parseFloat(thing)) && thing !== null) {
+          // Looks if there is a new country, makes a dictionary, alters
+          // counter1 and puts the counter2 on zero.
+          if (isNaN(parseFloat(dataValue)) && dataValue !== null) {
             counter1 += 1;
             if (i == 0) {
               allDataData[dataSorts[counter1]] = {};
             };
             counter2 = 0;
-            currentCountry = thing;
+            currentCountry = dataValue;
           }
+
+          // Otherwise the datavalue is an amount of criminality and it will be
+          // added to the data dictionary.
           else {
-            // if (your_string.indexOf('hello') > -1)
-            // console.log(thing);
             if (Object.keys(allDataData[dataSorts[counter1]]).indexOf(currentCountry) === -1) {
               allDataData[dataSorts[counter1]][currentCountry] = {};
             };
-            // rnum = rnum.split("F0").pop()
 
-            // && (thing.indexOf(",") === -1
-            if (thing !== null ) {
-              if (typeof(thing) !== "number") {
-                thing = thing.split(",")
-                if (thing[1] !== undefined) {
-                  // console.log(thing[0]);
-                  // console.log(thing[1]);
-                  thing = thing[0] + thing[1]
-                  // console.log(thing);
-                  // console.log(currentCountry);
+            // Looks if there is a "," in the numbers and deletes at. This is
+            // when the number is even as or higher than 1000.
+            if (dataValue !== null ) {
+              if (typeof(dataValue) !== "number") {
+                dataValue = dataValue.split(",")
+                if (dataValue[1] !== undefined) {
+                  dataValue = dataValue[0] + dataValue[1]
                 }
               }
-              // thing = thing.replace(",", "");
             }
 
-            // Convert the string to a digit with two decimals.
-            thing = Number(thing)
-            thing.toFixed(2)
-            allDataData[dataSorts[counter1]][currentCountry][allYearsList[counter2]] = thing;
+            // Convert the string to a digit with two decimals and adds it to
+            // the dictionary.
+            dataValue = Number(dataValue)
+            dataValue.toFixed(2)
+            allDataData[dataSorts[counter1]][currentCountry][allYearsList[counter2]] = dataValue;
             counter2 += 1;
           };
         };
@@ -371,30 +359,20 @@ window.onload = function(){
     console.log("all data data Tho");
     console.log(allDataData)
 
+    // Changes the names of the countries to names which are in accordance with
+    // the data map countries.
     for (i in dataSorts) {
-      // console.log(dataSorts[i]);
       for (j in oldCountryNames) {
         allDataData[dataSorts[i]][newCountryNames[j]] = allDataData[dataSorts[i]][oldCountryNames[j]]
         delete allDataData[dataSorts[i]][oldCountryNames[j]];
       }
     }
 
-    console.log(allDataData);
-
-
 
     function getData(worldData) {
-
-      // console.log("world data");
-      // console.log(worldData["data"]);
-      // console.log(countries);
-      // console.log(dataSorts);
-
-      dataAll = {}
-      dataSorts.forEach(function(ds) {
-        dataAll[ds] = {}
-      })
-      // console.log(dataAll);
+      /*
+      This function converts the data to another format.
+      */
 
       // Makes a dictionary and adds countries as keys. The values are lists of the years.
       dataEverything = {}
@@ -402,14 +380,7 @@ window.onload = function(){
         dataEverything[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
       })
 
-      // console.log("data every");
-      // console.log(dataEverything);
-
-      // console.log("world data de 1ste");
-
-      // console.log(worldData["data"]);
-
-      // Adds the data of the years of the countri "2010": [], "2010": [],es. Nog AANPASSEN   VERKORTE VERSIE!!!!!!!!!!
+      // Adds the data of the years of the countries.
       worldData["data"].forEach( function (dp) {
         for (i = 0; i < 90; i += 15) {
           for (j = 2; j < 15; j += 1) {
@@ -418,16 +389,11 @@ window.onload = function(){
         };
       });
 
-
-
-      // Belgie: 930.42 - 53.38 - 9.62 - 594.26
-      // Vanuit data world: 2.084,62 - 2.158,03 - 594.26 - 9.62 - 53.38 - 930.42
-
       console.log("all data per country data Everything");
       console.log(dataEverything);
 
 
-      // Makes a dictionary with all year whithin countries and there total amount of criminal activities.
+      // Makes a dictionary with all years whithin countries and there total amount of criminal activities.
       allYears = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []}
 
       countries.forEach(function(d) {
@@ -446,13 +412,10 @@ window.onload = function(){
         var sum2014 = 0
         var sum2015 = 0
 
-        // console.log(d);
-
         for (i = 0; i < 6; i++) {
           if (!Number.isNaN(dataEverything[d]["2003"][i]) && (dataEverything[d]["2003"][i] != null)) {
             sum2003 += dataEverything[d]["2003"][i]
           }
-          // console.log(dataEverything[d]["2003"]);
         }
         for (i = 0; i < 6; i++) {
           if (!Number.isNaN(dataEverything[d]["2004"][i]) && (dataEverything[d]["2004"][i] != null)) {
@@ -527,120 +490,59 @@ window.onload = function(){
           }
         }
 
-        // Ik wil er droge code van maken, maar hoe!?!??!?!??!?!
+        // Defines a list with all the sums.
         var yearSum = [sum2003, sum2004, sum2005, sum2006, sum2007, sum2008, sum2009, sum2010, sum2011, sum2012, sum2013, sum2014, sum2015]
 
-        for (var i in yearSum) {
-          // if (yearSum[i] == 0){
-          //   yearSum[i] = undefined;
-          // }
-          // console.log("jaaaaar");
-          // console.log(yearSum[i]);
-          // if (yearSum[i] === 0) {
-          //   // console.log("Hierbij moet die undefined worden");
-          //   yearSum[i]= undefined;
-          // }
-        }
+        // If the sum of a year is nul, it will become undefined.
         yearSum.forEach(function(y){
           if (y == 0){
             y = undefined;
           }
         });
-        // console.log(yearSum);
-        // console.log(sum2003);
-        // console.log(allYears);
+
+        // Makes a list of all the years.
         var allYearsList = Object.keys(allYears);
 
-        // console.log(allYearsList);
+        // Adds the sum of all the criminality of a country to one dictionary.
         for (i in allYearsList) {
           allYears[allYearsList[i]][d] = yearSum[i];
         }
 
-          // var toMatch;
-          // toMatch = 0;
-          // if (toMatch === 0) { // or !== if you're checking for not zero
-          //     document.write("no");
-          // } else {
-          //     document.write(toMatch);
-          // }
-
-
-        // console.log(typeof sum2003);
-        // console.log("sum 2003");
-        // console.log(Number(sum2003));
+        // MOET IK ER NOG NUMBERS VAN GAAN MAKEN?????????????!!!!!!!!!!!!!!?????????
         sum2003 = Number(sum2003);
 
         // JE KAN NIET OP 2 DECIMALEN AFRONDEN WANT DAN WORDT DIE NaN IN DE WORLD MAP
 
         // sum2003 = sum2003.toFixed(2);
-        // sum2004 = sum2004.toFixed(2);
-        // sum2005 = sum2005.toFixed(2);
-        // sum2006 = sum2006.toFixed(2);
-        // sum2007 = sum2007.toFixed(2);
-        // sum2008 = sum2008.toFixed(2);
-        // sum2009 = sum2009.toFixed(2);
-        // sum2010 = sum2010.toFixed(2);
-        // sum2011 = sum2011.toFixed(2);
-        // sum2012 = sum2012.toFixed(2);
-        // sum2013 = sum2013.toFixed(2);
-        // sum2014 = sum2014.toFixed(2);
         // sum2015 = sum2015.toFixed(2);
+      })
 
-        // allYears["2003"][d] = sum2003;
-        // allYears["2004"][d] = sum2004;
-        // allYears["2005"][d] = sum2005;
-        // allYears["2006"][d] = sum2006;
-        // allYears["2007"][d] = sum2007;
-        // allYears["2008"][d] = sum2008;
-        // allYears["2009"][d] = sum2009;
-        // allYears["2010"][d] = sum2010;
-        // allYears["2011"][d] = sum2011;
-        // allYears["2012"][d] = sum2012;
-        // allYears["2013"][d] = sum2013;
-        // allYears["2014"][d] = sum2014;
-        // allYears["2015"][d] = sum2015;
+      // Changes the names of the countries to names which are in accordance with
+      // the data map countries.
+      for (year in allYears) {
+        for (country in oldCountryNames) {
+          allYears[year][newCountryNames[country]] = allYears[year][oldCountryNames[country]];
+          delete allYears[year][oldCountryNames[country]];
+        };
+      };
+    };
 
-        // console.log("final");
-        // console.log(sum2010);
-    })
-    // console.log(oldCountryNames);
-    // console.log(allYears);
-    for (year in allYears) {
-      for (country in oldCountryNames) {
-        // console.log("poepie");
-        // console.log([newCountryNames[country]]);
-        // console.log([oldCountryNames[country]]);
-        // console.log(allYears[year][oldCountryNames[country]]);
-        allYears[year][newCountryNames[country]] = allYears[year][oldCountryNames[country]]
-        delete allYears[year][oldCountryNames[country]];
-        // console.log(allYears[year][newCountryNames[country]]);
-      }
+    // Changes the names of the countries to names which are in accordance with
+    // the data map countries.
+    for (i in oldCountryNames) {
+      allCrimes[newCountryNames[i]] = allCrimes[oldCountryNames[i]];
+      delete allCrimes[oldCountryNames[i]];
     }
-  }
 
-  for (i in oldCountryNames) {
-    allCrimes[newCountryNames[i]] = allCrimes[oldCountryNames[i]]
-    delete allCrimes[oldCountryNames[i]];
-  }
+    // MISSCHEIN KAN DIT OOK AL EERDER EN DAN NIET VOOR DIE ANDERE OOK NOG MOETEN VERANDEREN
+    for (i in oldCountryNames) {
+      dataEverything[newCountryNames[i]] = dataEverything[oldCountryNames[i]];
+      delete dataEverything[oldCountryNames[i]];
+    }
 
-  // MISSCHEIN KAN DIT OOK AL EERDER EN DAN NIET VOOR DIE ANDERE OOK NOG MOETEN VERANDEREN
-  for (i in oldCountryNames) {
-    dataEverything[newCountryNames[i]] = dataEverything[oldCountryNames[i]]
-    delete dataEverything[oldCountryNames[i]];
-  }
-  //
-  // console.log("alle jaren som");
-  // console.log(allYears);
-  // }
-
-    // console.log(yearDict);
-    // console.log(countries.length);
-    // console.log("doel");
-
+    // Defines the slider and goes to the map function when changing the year.
     var slider = d3.select("#year");
     slider.on('change', function() {
-      // console.log("dropje");
-      // console.log(this.value);
       createMap(this.value);
     });
 
@@ -665,9 +567,6 @@ window.onload = function(){
 
       var path = d3.geoPath();
 
-      // console.log("alle jaren");
-      // console.log(allYears[year]);
-
       // Deletes the world (when scrolling to anther year for instance). WERKT NIET!!!!!!
       d3.selectAll(".map").remove();
 
@@ -678,7 +577,6 @@ window.onload = function(){
                   .attr("width", width)
                   .attr("height", height)
                   .append('g');
-
 
       // Makes a map by takning the coordinates of each country.
       var projection = d3.geoMercator()
@@ -692,15 +590,15 @@ window.onload = function(){
       })
 
       function ready(data) {
-        console.log("sorten crimes");
-        //   console.log(dataSorts);
-        console.log(allDataData[crime]);
-        console.log("data features");
-        // console.log(allCrimes);
-        console.log(data.features);
-
-        console.log("keys alle jaren");
-        console.log(allYears[year]);
+        // console.log("sorten crimes");
+        // //   console.log(dataSorts);
+        // console.log(allDataData[crime]);
+        // console.log("data features");
+        // // console.log(allCrimes);
+        // console.log(data.features);
+        //
+        // console.log("keys alle jaren");
+        // console.log(allYears[year]);
 
 
         // Adds a key (crimes) and the data to each country when there is data of.
@@ -718,7 +616,7 @@ window.onload = function(){
           })
         }
 
-        console.log(data.features);
+        //  console.log(data.features);
 
         // Set tooltips and shows the country with his value.
         var tip = d3.tip()
@@ -742,13 +640,13 @@ window.onload = function(){
         // console.log("max");
         // console.log(max);
 
+          // Defines the colors for the world map.
         colorValues = [0, (max / 9), (max / 9) * 2, (max / 9) * 3, (max / 9) * 4, (max / 9) * 5, (max / 9) * 6, (max / 9) * 7, (max / 9) * 8, max]
         colorMap =["rgb(229, 240, 220)", "rgb(207, 243, 208)", "rgb(181, 247, 184)", "rgb(150, 247, 173)", "rgb(95, 238, 135)", "rgb(59, 226, 104)", "rgb(50, 180, 90)", "rgb(46, 139, 87)", "rgb(39, 121, 74)"]
-        // Defines the colors for the world map.
+
         var color = d3.scaleThreshold()
                       .domain(colorValues)
                       .range(colorMap)
-                      // .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
 
         createLegendMap();
 
@@ -809,20 +707,14 @@ window.onload = function(){
       This function creates a bar chart of a country with different sorts of crimes.
       */
 
-      amount = []
+      // Defines a list with the amounts of the criminal activities.
+      var amount = []
       for (i in dataSorts) {
-        // console.log(dataSorts[i]);
-        // console.log(allDataData[dataSorts[i]]);console.log();
-        console.log(cont);
-        // // Als je [year] weghaalt dan doet die het wel!!!!
-        // console.log(allDataData[dataSorts[i]]);
-        if (typeof allDataData[dataSorts[i]][cont] !== 'undefined') {
-          // console.log("drol");
+        if (typeof allDataData[dataSorts[i]][cont] !== "undefined") {
           amount.push(allDataData[dataSorts[i]][cont][year])
-          // console.log(allDataData[dataSorts[i]][cont][year])
         }
         else {
-          // vDIT HIERONDER KAN OOK ERGENS HIER EN DAN SVG VAN TEVOREN AANMAKEN
+          // DIT HIERONDER KAN OOK ERGENS HIER EN DAN SVG VAN TEVOREN AANMAKEN
           // svg.append("text")
           //    .attr("class", "text")
           //    .text("For this country not all the data is available.")
@@ -1409,11 +1301,11 @@ window.onload = function(){
               // console.log(d);
               if (d.properties.name == key) {
                 // if (typeof allDataData[dataSorts[i]][cont] !== 'undefined')
-                console.log(typeof (value[year]));
-                if (typeof (value[year]) !== "undefined") {
+                //  HOEZO KLOPT DIT NIET !! HOEZO KAN JE TYPEOF VALUE[YEAR] NIET DOEN, MAAR HET BESTAAT WEL??????????
+                if (typeof (value) !== "undefined") {
                   // console.log(key);
                   // console.log(value[year]);
-
+                  // console.log(typeof (value[year]));
                   sum[key] += value[year]
                   // d.crimes = sum[key];
                 }
