@@ -12,6 +12,8 @@ HTML file for information of the finalproject about criminality.
 
     <!--Makes a title and imports d3, a d3-tip library and a stylesheet.-->
     <title>Information</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
     <!-- <script src="https://d3js.org/d3.v5.min.js"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script> -->
 
@@ -25,9 +27,12 @@ HTML file for information of the finalproject about criminality.
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="content-dropdown">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a onclick="mapOneCrime('Assaults')">Assaults</a>
+          <a onclick="mapOneCrime('Burglary')">Burglaries</a>
+          <a onclick="mapOneCrime('Kidnapping')">Kidnappings</a>
+          <a onclick="mapOneCrime('Robbery')">Robberies</a>
+          <a onclick="mapOneCrime('Sexual violence')">Sexual violences</a>
+          <a onclick="mapOneCrime('Theft')">Thefts</a>
         </div>
       </div>
       <a class="active" href="index_information.html">Information</a>

@@ -29,10 +29,10 @@ HTML file for the worldmap finalproject about criminality.
     <script src="/libraries/world_palestine.js"></script> -->
 
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
-    <script type="text/javascript" src="map_criminality.js"></script>
+    <script type="text/javascript" src="map_criminality_new.js"></script>
   </head>
   <body>
-    <!-- Navigation bar is with help of https://www.w3schools.com/howto/howto_js_topnav.asp -->\
+    <!-- Navigation bar is with help of https://www.w3schools.com/howto/howto_js_topnav.asp -->
     <!-- https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp -> voor de dropdown erin-->
 
     <div class="topnav">
@@ -42,9 +42,12 @@ HTML file for the worldmap finalproject about criminality.
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="content-dropdown">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
-          <a href="#">Link 3</a>
+          <a onclick="mapOneCrime('Assaults')">Assaults</a>
+          <a onclick="mapOneCrime('Burglary')">Burglaries</a>
+          <a onclick="mapOneCrime('Kidnapping')">Kidnappings</a>
+          <a onclick="mapOneCrime('Robbery')">Robberies</a>
+          <a onclick="mapOneCrime('Sexual violence')">Sexual violences</a>
+          <a onclick="mapOneCrime('Theft')">Thefts</a>
         </div>
       </div>
       <!-- <a href="#map">World map</a> -->
