@@ -39,6 +39,6 @@ The data of countries in which the crimes were nul (so no data) where changed fr
 __23-01-2018__
 The title of the bar chart and pie chart changed when chosing another country, but when changing the size of the screen the title changed also wrong. I have fixed this. I also updated the world map instead of making a new one. The barchart also updates when you choose a country in another year. I tried this for the pie chart as well, but this is not finished yet.
 
-__24-01-2018__
-Now the pie chart also changes when another year is selected and there is clicked at a country.
-Dit naar andere dag, want deze dag was Hackaton.
+__25-01-2018__
+Now the pie chart also changes when another year is selected and there is clicked at a country. Solved a bug in which there was not made a bar chart when clicking on a country when just one data of one crime was missing. Also solved another bug in which the old and new naming of the countries were used mixed up. Before the donut chart showed the data also when there was just data of men or women and now only if there is data of both. 
+
