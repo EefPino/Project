@@ -44,3 +44,6 @@ Now the pie chart also changes when another year is selected and there is clicke
 
 __28-01-2018__
 Made a function in which you can put one sort of crime and you can get a world map of that sort of crime only. Also produced in the navigation bar a dropdown on which you can click and it goes to a function. This function does only not work properly (You cannot refer to the working function, because that is in an onload function). Solved a bug in which data which was larger than 999 were undefined, because there was a comma inside the number. Updated the dropdown in all the html files. Converted some wett code to dry code.
+
+__29-01-2018__
+Made a legend for the world map, which only shifts sometimes accidentally. Made the svg for the donut chart larger and changed some things, so that the title at each country fits. Added a click on to the html files, so that when clicking a sort crime in the navigation bar, a map with only data of that crime will be visualised. It works when starting at the home page, but it will not go back to the home page (it will go to other crime maps). You can also not click on the crimes when you are at the reference or the information page.    
