@@ -13,11 +13,10 @@ Bootstrap grip
 
 // event.pageX veranderen voor tooltip
 var allDataData;
-function mapOneCrime(x){
-  console.log(x);
-
-  // console.log(allDataData[crime]);
-  // console.log();
+window.year = 2015;
+window.category = "Assaults";
+window.categoryChanged = false;
+function mapOneCrime(crime, year){
   /*
   Creates a world map with scaling colors of the countries relative to the
   amount of criminal activities in that country.
@@ -25,6 +24,13 @@ function mapOneCrime(x){
   http://bl.ocks.org/micahstubbs/raw/8e15870eb432a21f0bc4d3d527b2d14f/
   a45e8709648cafbbf01c78c76dfa53e31087e713/world_countries.json
   */
+
+  window.category = crime
+  window.categoryChanged = true
+
+  console.log(crime);
+
+
 
   // Defines the width and height for the svg.
   width = 900;
@@ -42,6 +48,13 @@ function mapOneCrime(x){
               .attr("width", width)
               .attr("height", height)
               .append('g');
+
+
+  svg.append("text")
+     .attr("class", "text")
+     .text(crime)
+     // .style("font-size", "12px")
+     .attr("transform", "translate(" + (width / 2) + "," + 50 + ")");
 
 
   // Makes a map by taking the coordinates of each country.
@@ -67,20 +80,21 @@ function mapOneCrime(x){
 
     console.log("keys alle jaren");
     console.log(allYears[year]);
+    console.log(year);
 
     // Adds a key (crimes) and the data to each country when there is data of.
     for (const [key, value] of Object.entries(allDataData[crime])) {
       data.features.forEach(function(d) {
         // console.log(d);
         if (d.properties.name == key) {
-          console.log(key);
+          // console.log(key);
           if (typeof value !== "undefined") {
-            console.log(value[year]);
+            // console.log(value[year]);
             d.crimes = value[year];
-          }
-        }
-      })
-    }
+          };
+        };
+      });
+    };
 
     console.log(data.features);
 
@@ -287,7 +301,6 @@ window.onload = function(){
     // useless parts of the data and a true variable when it is done.
     allDataData = {};
     var allYearsList = Object.keys(allYears);
-    console.log(allYearsList);
     var worldParts = ["Africa", "Americas", "Asia", "Europe", "Oceania"];
     var useless = ["-", "*", "Please", "Jan"];
     var done = true;
@@ -480,12 +493,15 @@ window.onload = function(){
         }
 
         var years = ["2003", "2004", "2005", "2006", "2007", "2008", "2009","2010", "2011", "2012", "2013", "2014", "2015"];
-
+        // console.log("alle jaren jajaja");
+        // console.log(allYears);
         for (var i in years) {
           // console.log("jaaaaar");
-          // console.log(year);
+          // console.log(years[i]);
+          // console.log(Object.values(allYears[years[i][d]]));
+          // console.log(d);
           if (allYears[years[i]][d] === "0") {
-            console.log("Hierbij moet die undefined worden");
+            // console.log("Hierbij moet die undefined worden");
             allYears[years[i]][d] = undefined;
           }
         }
@@ -497,6 +513,7 @@ window.onload = function(){
         yearSum.forEach(function(y){
           if (y == 0){
             y = undefined;
+            // console.log("jaja hij wordthier toch echt undefined");
           }
         });
 
@@ -543,15 +560,23 @@ window.onload = function(){
     // Defines the slider and goes to the map function when changing the year.
     var slider = d3.select("#year");
     slider.on('change', function() {
-      createMap(this.value);
+
+      window.year = this.value;
+      if (window.categoryChanged == true){
+        mapOneCrime(window.category, window.year);
+      } else {
+        createMap(window.year);
+      }
+
+
     });
 
     // Dit werkt alleen moet ik nog kijken hoe ik de crime variabel ga maken !!!!!!!!!!!!!!!!!!
     crime = "Assaults"
     year = 2010
-    mapOneCrime(year, crime)
+    // mapOnesCrime(year, crime)
 
-    function mapOneCrime(year, crime) {
+    function mapOnesCrime(year, crime) {
       /*
       Creates a world map with scaling colors of the countries relative to the
       amount of criminal activities in that country.
@@ -715,63 +740,25 @@ window.onload = function(){
         }
         else {
           // DIT HIERONDER KAN OOK ERGENS HIER EN DAN SVG VAN TEVOREN AANMAKEN
+          // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
           // svg.append("text")
           //    .attr("class", "text")
           //    .text("For this country not all the data is available.")
           //    .style("font-size", "12px")
           //    .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
           amount.push(0)
-          console.log(dataEverything[cont]);
         }
       }
-      console.log("roekoe amount");
-      console.log(amount);
 
-      // for (i in amount) {
-      //   console.log(amount[i]);
-      //   if
-      // }
-
+      // Defines a counter and looks if all the data of the barchart is zero.
       var zerocount = 0;
 
-      for(i in amount) {
-        if(amount[i] !== 0) {
+      for( i in amount) {
+        if (amount[i] !== 0) {
           zerocount = 1;
           break;
         }
       }
-
-
-
-      // console.log(allDataData["Burglary"]["Albania"])
-
-      // console.log(allDataData)
-
-      // Makes a list with the amounts of criminal activities in 2010.
-      // var amounts = allData[cont]["2010"]
-      // console.log(dataEverything);
-      // var amounts = dataEverything[cont][year]
-      // console.log("amounts barchart");
-      // console.log(amounts);
-
-      // // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
-      // for (i in amounts) {
-      //   if (isNaN(amounts[i])) {
-      //     amounts[i] = 0;
-      //     console.log("er is data 0");
-      //     // Gives a title to the bar chart which changes for each country.
-      //     svg.append("text")
-      //        .attr("class", "text")
-      //        .text("For this country not all the data is available.")
-      //        .attr("transform", "translate(" + padding2 * 6 + "," + padding2 + ")");
-      //   }
-      // }
-
-      // console.log("jaar");
-      // console.log(year);
-
-      // console.log("all data per country");
-      // console.log(dataEverything[cont][year]);
 
       // Gives values to the width, height and padding of the SVG and bar chart.
       var widthSVG = 800;
@@ -782,7 +769,7 @@ window.onload = function(){
       var height = 300;
       var widthBar = 30;
 
-      // Deletes the bar chart (when clicking on a new one for instance).
+      // Deletes the bar chart (when clicking on a new country for instance).
       if (d3.select("svg.bar")) {
         d3.select("svg.bar").remove().exit();
       }
@@ -794,48 +781,28 @@ window.onload = function(){
                   .attr("width", widthSVG)
                   .attr("height", heightSVG);
 
-      // IK BEGRIJP NIET WAAROM DEZE ONDER DE SVG MOET STAAN EN DE ANDERE EER WEL BOVEN KAN???
+      // IK BEGRIJP NIET WAAROM DEZE ONDER DE SVG MOET STAAN EN DE ANDERE ER WEL BOVEN KAN???
+      // Deletes the bar chart when all the data of it is zero.
       if(!zerocount) {
-        // Deletes the bar chart (when clicking on a new country without data).
         if (d3.select("svg.bar")) {
-          console.log("verwijder hem");
           d3.select("svg.bar").remove().exit();
         }
-        console.log('all are zero');
       }
 
-
-      // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something.
+      // HIER MOET IK IN AANPASSEN DAT DIE IPV = 0 -> is undefined or something, ook bij amount is 0 doet die dit ?????!!!!!.
+      // Looks if there is data of one sort of crime undefined.
       for (i in amount) {
         if (isNaN(amount[i])) {
           amount[i] = 0;
-          console.log("er is data 0");
-          // Gives a title to the bar chart which changes for each country.
+
+          // Gives a subtitle which informs that there is not all the data.
           svg.append("text")
              .attr("class", "text")
              .text("For this country not all the data is available.")
              .style("font-size", "12px")
              .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
-        }
-      }
-      // console.log(amounts);
-
-      //  DIT KAN OOK NAAR BOVEN VERPLAATST WORDEN!!!
-      for (i in amount) {
-        if (isNaN(amount[i])) {
-          console.log(i);
-          amount[i] = 0;
-          console.log("er is data 0");
-          // Gives a title to the bar chart which changes for each country.
-          svg.append("text")
-             .attr("class", "text")
-             .text("For this country not all the data is available.")
-             .style("font-size", "12px")
-             .attr("transform", "translate(" + padding2 * 4 + "," + padding2 * 2 + ")");
-        }
-      }
-
-      // Volgorde: "Assaults", "Burglary", "Kidnapping", "Robbery", "Sexual violence", "Theft"
+        };
+      };
 
       // Defines a tip with a class and the specific value.
       var tip = d3.tip()
@@ -847,10 +814,10 @@ window.onload = function(){
 
       svg.call(tip);
 
-      // Calculates the maximum value.
+      // Calculates the maximum value of the values.
       var max = Math.max.apply(null, amount);
 
-      // Scales the y axis from 0 to a bit lower than max.
+      // Scales the y axis from 0 to a bit higher than the max.
       var yScale = d3.scaleLinear()
                      .domain([0, 100 + max])
                      .range([height, padding])
@@ -867,17 +834,16 @@ window.onload = function(){
                     .append("rect")
                     .attr("class", "bar")
                     .attr("width", widthBar)
-                    .attr("height", function(d){
+                    .attr("height", function(d) {
                       return height - yScale(d);
                     })
                     .attr("x", function(d, i){
-                      return 80 + (width / dataSorts.length) * i
+                      return 80 + (width / dataSorts.length) * i;
                     })
                     .attr("y", function(d, i) {
-                      console.log(d);
                       return yScale(d);
                     })
-                    .attr("fill", "rgb(150, 247, 173)", )
+                    .attr("fill", "rgb(150, 247, 173)")
 
                     // Puts the tip on or off.
                     .on('mouseover', tip.show)
@@ -900,11 +866,11 @@ window.onload = function(){
           })
          .attr("x", function(d, i) {
 
-           // Dit nog veranderen naar iets met xScale!!!!!!!!!!!!!!????????????
-            return ((i * barWidth + 95))
+           // Dit nog veranderen naar iets met xScale!!!!!!!!!!!!!!????????????!!!
+            return ((i * barWidth + 95));
           })
          .text(function(d){
-            return d
+            return d;
           })
          .attr("text-anchor", "middle");
 
@@ -941,109 +907,75 @@ window.onload = function(){
           .text("Amount");
     }
 
-
     function createDonutchartData(cont, year) {
       /*
-      Creates a Donutchart with the amount of women and men which commit
-      criminal activities for each country.
+      Creates a donutchart with the amount of criminal activities commited by
+      women and men for each country.
       */
 
-      // console.log("all data per country");
-      // console.log(dataEverything);
-
-      // Generates a dictionary for each country with lists of 2010 and 2015.
+      // Generates a dictionary for each country with lists of 2003 until 2015.
       genderData = {}
-
 
       countries.forEach(function(d){
         genderData[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
-      })
+      });
 
-      // console.log("year donut");
-      // console.log(year);
-      // Appends the amount of women and men which commit criminal activities
-      // to the dictionary.
-      // dataWorld["data"].forEach( function (dp) {
-      //   for (i = 24; i < 32; i += 4) {
-      //     genderData[dp[i + 1]]["2010"].push(Number(dp[i + 2]))
-      //     genderData[dp[i + 1]]["2015"].push(Number(dp[i + 3]));
-      //   }
-      // })
-
-      // console.log("data WOLRD de tweede 2"); // dit is echt gewoon precies hetzelfde als de eerste keer de world data !!
-      // console.log(worldData.data);
-
-
+      // Adds the right data to the dictionary
       worldData["data"].forEach( function (dp) {
         for (i = 90; i < 120; i += 15) {
-          // console.log(dp[i]);
-          // console.log(genderData[dp[i + 1]]["2015"]); // deze bestaat wel, maar die van 2015 bestaat niet.
-          // console.log(dp[i + 14]);
-          genderData[dp[i + 1]]["2003"].push(Number(dp[i + 2]));
-          genderData[dp[i + 1]]["2004"].push(Number(dp[i + 3]));
-          genderData[dp[i + 1]]["2005"].push(Number(dp[i + 4]));
-          genderData[dp[i + 1]]["2006"].push(Number(dp[i + 5]));
-          genderData[dp[i + 1]]["2007"].push(Number(dp[i + 6]));
-          genderData[dp[i + 1]]["2008"].push(Number(dp[i + 7]));
-          genderData[dp[i + 1]]["2009"].push(Number(dp[i + 8]));
-          genderData[dp[i + 1]]["2010"].push(Number(dp[i + 9]));
-          genderData[dp[i + 1]]["2011"].push(Number(dp[i + 10]));
-          genderData[dp[i + 1]]["2012"].push(Number(dp[i + 11]));
-          genderData[dp[i + 1]]["2013"].push(Number(dp[i + 12]));
-          genderData[dp[i + 1]]["2014"].push(Number(dp[i + 13]));
-          genderData[dp[i + 1]]["2015"].push(Number(dp[i + 14]));
-        }
+          for (j = 2; j < 15; j++) {
+            genderData[dp[i + 1]][2001 + j].push(Number(dp[i + j]));
+          };
+        };
       });
 
       // Change the names of the countries to names which are in accordance with the data map countries.
       for (i in oldCountryNames) {
         genderData[newCountryNames[i]] = genderData[oldCountryNames[i]]
         delete genderData[oldCountryNames[i]];
-      }
+      };
 
-      // console.log("genderdata");
-      // // console.log(genderData);
-      // console.log(genderData[cont][year]);
-      // // console.log(genderData[cont][year].length);
-      // console.log(genderData[cont][year][0] );
-      //
-      // var nanValue = NaN;
-      // console.log(typeof(genderData[cont][year][0]) == "NaN");
+      // DIT LATER DOEN IN DE HOIERONDER KORTERE VERSIE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      // // Deletes the donut chart when there is no data about,
+      // if ((genderData[cont][year].length == 0) || (genderData[cont] === undefined) ||
+      //     (genderData[cont][year][0] == 0) || (genderData[cont][year][1] == 0) ||
+      //     (isNaN(genderData[cont][year][0])) || (isNaN(genderData[cont][year][1])) ||
+      //     (genderData[cont][year][0] === undefined) || (genderData[cont][year][1] === undefined)) {
+      //   if (d3.select("svg.pie")) {
+      //     console.log("delete hem juist");
+      //     d3.select("svg.pie").remove().exit();
+      //   };
+      // }
 
+      // console.log(genderData[cont]);
 
-
-      if (genderData[cont][year].length == 0) {
-        // Hier moet die de donutchart gaan deleten!!! (Dat is dan die van het vorige land.)
-        console.log("nu is de lijst misschien leeg");
-        // Deletes the pie chart (when clicking on a new one for instance).
+      if ((genderData[cont] === undefined)) {
+        console.log("hier is een waarde undefined");
         if (d3.select("svg.pie")) {
           d3.select("svg.pie").remove().exit();
-        }
+        };
       }
 
-
-
+      // Deletes the donut chart when there is no data about,
+      else if (genderData[cont][year].length == 0) {
+        console.log("lengte lijst is 0");
+        if (d3.select("svg.pie")) {
+          d3.select("svg.pie").remove().exit();
+        };
+      }
 
       else if (genderData[cont][year][0] == 0 || genderData[cont][year][1] == 0) {
         console.log("hier is een waarde 0");
         if (d3.select("svg.pie")) {
           d3.select("svg.pie").remove().exit();
-        }
+        };
       }
 
       else if (isNaN(genderData[cont][year][0]) || isNaN(genderData[cont][year][1])) {
         console.log("hier is een waarde NaN");
         if (d3.select("svg.pie")) {
           d3.select("svg.pie").remove().exit();
-        }
-      }
-
-      // Deze werkt ook niet...
-      else if ((genderData[cont][year][0].isNaN) || (genderData[cont][year][1].isNaN)) {
-        console.log("hier is een waarde NaN");
-        if (d3.select("svg.pie")) {
-          d3.select("svg.pie").remove().exit();
-        }
+        };
       }
 
       // Deze heb ik nergens voor nodig!!!!! Probeersel
@@ -1051,21 +983,8 @@ window.onload = function(){
         console.log("hier is een waarde undefined");
         if (d3.select("svg.pie")) {
           d3.select("svg.pie").remove().exit();
-        }
+        };
       }
-
-
-      // else if ((typeOf(genderData[cont][year][0] == "NaN")) || (typeOf(genderData[cont][year][0] == "NaN")) {
-      //   console.log("hier is een waarde NaN");
-      //   if (d3.select("svg.pie")) {
-      //     d3.select("svg.pie").remove().exit();
-      //   }
-      // }
-
-
-
-
-
 
       else {
 
@@ -1075,7 +994,7 @@ window.onload = function(){
 
         // Hij komt denk ik altijd hierin!!!!
         console.log("wel data");
-        createDonutchart(genderData[cont][year], cont)
+        createDonutchart(genderData[cont][year], cont);
       };
 
 
@@ -1101,7 +1020,7 @@ window.onload = function(){
 
       // Defines the margins for the svg and donut and defines the colors
       // and other values for the donutchart.
-      var width = 600;
+      var width = 700;
       var height = 550;
       var widthDonut = 400;
       var heightDonut = 400;
@@ -1140,8 +1059,7 @@ window.onload = function(){
       // Defines a pie for the donut chart.
       var pie = d3.pie()
                   .value(function(d, i) {
-                    // return genderData[cont]["2010"][i]
-                    return data[i]
+                    return data[i];
                   })
                   .sort(null);
 
@@ -1219,7 +1137,7 @@ window.onload = function(){
                     .style("fill", color(i))
                     .text(d);
               });
-    }
+    };
 
     createMap("2015");
 
@@ -1272,14 +1190,14 @@ window.onload = function(){
         console.log(allYears);
         console.log(allDataData);
 
-        // // Adds a key (crimes) and the data to each country when there is data of.
-        // for (const [key, value] of Object.entries(allYears[year])) {
-        //   data.features.forEach(function(d) {
-        //     if (d.properties.name == key) {
-        //       d.crimes = value
-        //     }
-        //   })
-        // }
+        // Adds a key (crimes) and the data to each country when there is data of.
+        for (const [key, value] of Object.entries(allYears[year])) {
+          data.features.forEach(function(d) {
+            if (d.properties.name == key) {
+              d.crimes = value
+            }
+          })
+        }
 
         // console.log("jes");
         // console.log(dataSorts);
@@ -1293,47 +1211,49 @@ window.onload = function(){
           sum[newCountries[i]] = 0
         }
 
-        for (i in dataSorts) {
-          // console.log(dataSorts[i]);
-          for (const [key, value] of Object.entries(allDataData[dataSorts[i]])) {
-            // console.log(allDataData[dataSorts[i]]);
-            data.features.forEach(function(d) {
-              // console.log(d);
-              if (d.properties.name == key) {
-                // if (typeof allDataData[dataSorts[i]][cont] !== 'undefined')
-                //  HOEZO KLOPT DIT NIET !! HOEZO KAN JE TYPEOF VALUE[YEAR] NIET DOEN, MAAR HET BESTAAT WEL??????????
-                if (typeof (value) !== "undefined") {
-                  // console.log(key);
-                  // console.log(value[year]);
-                  // console.log(typeof (value[year]));
-                  sum[key] += value[year]
-                  // d.crimes = sum[key];
-                }
-                // if (value[year] == 0) {
-                //   console.log(key);
-                // }
-              }
-            })
-          }
-        }
+              // DIT HOET VOLGENS MIJ ECHT NIET, WANT DATA EVERYTHING ZIT OOK ALLES IN !!!
+
+        // for (i in dataSorts) {
+        //   // console.log(dataSorts[i]);
+        //   for (const [key, value] of Object.entries(allDataData[dataSorts[i]])) {
+        //     // console.log(allDataData[dataSorts[i]]);
+        //     data.features.forEach(function(d) {
+        //       // console.log(d);
+        //       if (d.properties.name == key) {
+        //         // if (typeof allDataData[dataSorts[i]][cont] !== 'undefined')
+        //         //  HOEZO KLOPT DIT NIET !! HOEZO KAN JE TYPEOF VALUE[YEAR] NIET DOEN, MAAR HET BESTAAT WEL??????????
+        //         if (typeof (value) !== "undefined") {
+        //           // console.log(key);
+        //           // console.log(value[year]);
+        //           // console.log(typeof (value[year]));
+        //           sum[key] += value[year]
+        //           // d.crimes = sum[key];
+        //         }
+        //         // if (value[year] == 0) {
+        //         //   console.log(key);
+        //         // }
+        //       }
+        //     })
+        //   }
+        // }
 
         console.log(sum);
 
-        for (const [key, value] of Object.entries(allDataData[dataSorts[i]])) {
-          // console.log(allDataData[dataSorts[i]]);
-          data.features.forEach(function(d) {
-            // console.log(d);
-            if (d.properties.name == key) {
-              // if (typeof allDataData[dataSorts[i]][cont] !== 'undefined')
-              if (typeof value !== "undefined") {
-                // console.log(key);
-                // console.log(value[year]);
-                // sum[key] += value[year]
-                d.crimes = sum[key];
-              }
-            }
-          })
-        }
+        // for (const [key, value] of Object.entries(allDataData[dataSorts[i]])) {
+        //   // console.log(allDataData[dataSorts[i]]);
+        //   data.features.forEach(function(d) {
+        //     // console.log(d);
+        //     if (d.properties.name == key) {
+        //       // if (typeof allDataData[dataSorts[i]][cont] !== 'undefined')
+        //       if (typeof value !== "undefined") {
+        //         // console.log(key);
+        //         // console.log(value[year]);
+        //         // sum[key] += value[year]
+        //         d.crimes = sum[key];
+        //       }
+        //     }
+        //   })
+        // }
 
         // Set tooltips and shows the country with his value.
         var tip = d3.tip()
@@ -1365,7 +1285,6 @@ window.onload = function(){
                       .range(colorMap)
                       // .range(["rgb(247,251,255)", "rgb(222,235,247)", "rgb(198,219,239)", "rgb(158,202,225)", "rgb(107,174,214)", "rgb(66,146,198)","rgb(33,113,181)","rgb(8,81,156)","rgb(8,48,107)","rgb(3,19,43)"]);
 
-        createLegendMap();
 
         // Makes the world map with the right colors of the countries.
         svg.append("g")
@@ -1416,10 +1335,18 @@ window.onload = function(){
             .attr("class", "names")
             .attr("d", path)
 
+            createLegendMap();
+
+
       }
     }
 
     function createLegendMap() {
+
+      // Deletes the legend (when clicking on another map for instance).
+      if (d3.select("svg.legendmap")) {
+        d3.select("svg.legendmap").remove().exit();
+      }
 
       // Gives values to the width, height and padding of the SVG.
       var width = 300;
@@ -1427,42 +1354,51 @@ window.onload = function(){
       var padding = 20;
 
       // Gives the svg, a body with an width and height.
-      var svg = d3.select("body")
+      var svg_legend = d3.select("body")
                   .append("svg")
-                  .attr("class", "legend map")
-                  .attr("width", width)
+                  .attr("class", "legendmap")
+                  .attr("width", width - 20)
                   .attr("height", height);
 
-      // console.log("legend");
+      console.log("legend");
+
 
       // Defines a legend with help of https://bl.ocks.org/jkeohan/b8a3a9510036e40d3a4e .
-      var legend = svg.selectAll("legend")
-                        .append("g")
-                        .attr("class", "legend map")
-                        .attr("transform", "translate(" + 40 + "," + 40 + ")")
-                        .attr("x", 100)
-                        .attr("y", 100)
-                        .attr("height", 100)
-                        .attr("width", 100)
-                        .each(function(d) {
-                          // console.log("hier komt die nooit!!");
-                          return(d)
-                        })
+      console.log(d3.select(".legendmap"));
+      var legend = d3.select(".legendmap")
+                     .append("g")
+                     .attr("class", "legend")
+                     .attr("transform", "translate(" + 40 + "," + 40 + ")")
+                     .attr("x", 0)
+                     .attr("y", 0)
+                     .attr("height", 200)
+                     .attr("width", 200)
+                     // .each(function(d) {
+                     //    console.log("hier komt die nooit!!");
+                     //    return(d)
+                     // })
+      console.log(colorValues);
+      console.log(colorMap);
+
 
       // Makes colored squares.
-      legend.selectAll('g')
+      legend.selectAll("g")
             .data(colorValues)
             .enter()
-            .append('g')
+            .append("g")
             .each(function(d, i) {
+              // console.log("hiero");
+              // console.log(d);
+              // console.log(colorMap[i]);
+              // console.log(colorMap(i));
               var g = d3.select(this);
-              // console.log("en hierkomt die ook niet");
+
               g.append("rect")
-               .attr("x", width - 50)
+               .attr("x", 40)
                .attr("y", i * 25)
                .attr("width", 10)
                .attr("height", 10)
-               .style("fill", colorMap(i));
+               .style("fill", colorMap[i]);
 
               // Appends the text to the legend.
               g.append("text")
@@ -1470,16 +1406,42 @@ window.onload = function(){
                   .attr("y", i * 25 + 10)
                   .attr("height",30)
                   .attr("width",100)
-                  .style("fill", colorMap(i))
-                  .text(d);
+                  .text(parseInt(d));
             });
-    }
+    };
+
+
+    // // Makes colored squares.
+    // legend.selectAll('g')
+    //       .data(["Men", "Women", "Others"])
+    //       .enter()
+    //       .each(function(d, i) {
+    //         var g = d3.select(this);
+    //         g.append("rect")
+    //          .attr("x", width - 260)
+    //          .attr("y", i * 25)
+    //          .attr("width", 10)
+    //          .attr("height", 10)
+    //          .style("fill", color(i));
+    //
+    //         // Appends the text to the legend.
+    //         g.append("text")
+    //             .attr("x", width - 240)
+    //             .attr("y", i * 25 + 10)
+    //             .attr("height",30)
+    //             .attr("width",100)
+    //             .style("fill", color(i))
+    //             .text(d);
+    //       });
+
+
+  })
 
     console.log("The eind");
 
-    })
-    .catch(function(e){
-      console.log(e);
-      throw(e);
-    });
-  }
+}
+    // .catch(function(e) {
+    //   console.log(e);
+    //   throw(e);
+    // });
+    //
