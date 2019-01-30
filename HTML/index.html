@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<!--
+Eveline Tiekink
+11267321
+HTML file for the worldmap finalproject about criminality.
+-->
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+
+    <!--Makes a title and imports d3, a d3-tip library and a stylesheet.-->
+    <title>World Map</title>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world-palestine-highres.js"></script>
+
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src= "d3/d3-tip.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <script type="text/javascript" src="map_criminality_final2.js"></script>
+  </head>
+  <body>
+    <!-- The navigation bar is with help of https://www.w3schools.com/howto/howto_js_topnav.asp
+    and https://www.w3schools.com/howto/howto_css_dropdown_navbar.asp-->
+
+    <div class="topnav">
+      <a class="active" href="#home">Home</a>
+      <div class="dropdown">
+        <button class="dropbutton">World Map
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="content-dropdown">
+          <a onclick="mapOneCrime('Assaults', window.year)" >Assaults</a>
+          <a onclick="mapOneCrime('Burglary', window.year)">Burglaries</a>
+          <a onclick="mapOneCrime('Kidnapping', window.year)">Kidnappings</a>
+          <a onclick="mapOneCrime('Robbery', window.year)">Robberies</a>
+          <a onclick="mapOneCrime('Sexual violence', window.year)">Sexual violences</a>
+          <a onclick="mapOneCrime('Theft', window.year)">Thefts</a>
+        </div>
+      </div>
+
+      <a href="index_information.html">Information</a>
+      <a href="index_references.html">References</a>
+    </div>
+
+    <h1> Criminal activities around the world </h1>
+    <h2> Made by Eveline Tiekink - 11267321 </h2>
+    <p>This is a world map of the amount of criminality (assault,
+       kidnapping, theft, robbery, burglary and sexual violence) relative to the
+       amount of inhabitants of that country. You can find more information when
+       clicking on Infomration at the top. The references can also be found.</p>
+    <form>
+       <label for="year">Please select a year: </label>
+       <input type="range" min=2003 max=2015 step=1 id="year" value=2015 oninput="selected_year.value = year.value">
+       <output name="selected_year" id="selected_year"></output>
+    </form>
+    <div id="container"></div>
+
+  </body>
+
+</html>
