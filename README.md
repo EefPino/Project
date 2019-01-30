@@ -7,7 +7,8 @@ This visualization is designed to collect data of reported crime with the goal t
 The crimes are divided in different categorizes: Assault, Burglary, Kidnapping, Robbery, Sexual violencea and Theft. Hereby you can see in which category each country had the most criminal activities. You can also see which gender commits the most criminal activities.
 
 **World Map**
-![afbeelding](https://user-images.githubusercontent.com/43990565/52001779-8bd7b080-24c0-11e9-991f-d7bc7575164e.png)
+![afbeelding](https://user-images.githubusercontent.com/43990565/52001949-fc7ecd00-24c0-11e9-80fb-80499ce2d3b9.png)
+Hereby you can see the home page, whith above the navigation bar. With the slider you can go to different years in which each year will give another world map (and another legend). You can scroll over the legend in which you can see the precise value of each country. You can click on each country and it will gave you a bar chart and donut chart if there is data available for these.  
 
 **Copy right statement**
 I state that I (Eveline Tiekink) own the repository and that nobody should change it. See the license.
