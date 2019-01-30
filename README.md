@@ -23,6 +23,7 @@ Clicking on Canada (in a certain year) for instance gives this bar chart. You ca
 Clicking on Australia (in a certain year) will give this donut chart in which you can see the amount of criminal activities per 100.000 inhabitants for men and women. 
 
 **Copy right statement**
+
 I state that I (Eveline Tiekink) own the repository and that nobody should change it. See the license.
 
 **Reference**
