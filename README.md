@@ -8,7 +8,19 @@ The crimes are divided in different categorizes: Assault, Burglary, Kidnapping, 
 
 **World Map**
 ![afbeelding](https://user-images.githubusercontent.com/43990565/52001949-fc7ecd00-24c0-11e9-80fb-80499ce2d3b9.png)
-Hereby you can see the home page, whith above the navigation bar. With the slider you can go to different years in which each year will give another world map (and another legend). You can scroll over the legend in which you can see the precise value of each country. You can click on each country and it will gave you a bar chart and donut chart if there is data available for these.  
+Hereby you can see the home page, whith above the navigation bar. In the Information page extra information is given and in the References page the sources are placed. With the slider you can go to different years in which each year will give another world map (and another legend). You can scroll over the legend in which you can see the precise value of each country. You can click on each country and it will gave you a bar chart and donut chart if there is data available for these.  
+
+__Map for each crime__
+![afbeelding](https://user-images.githubusercontent.com/43990565/52002069-4ebfee00-24c1-11e9-82f1-a8219fb47fc6.png)
+You have a dropdown in the navigation bar. When you click on a specific crime, you get the world map of that crime only.
+
+**Bar chart**
+![afbeelding](https://user-images.githubusercontent.com/43990565/52002214-b1b18500-24c1-11e9-89da-6fd0aa60c029.png)
+Clicking on Canada (in a certain year) for instance gives this bar chart. You can scroll over the bars in which you see the specific values.
+
+**Donut chart**
+![afbeelding](https://user-images.githubusercontent.com/43990565/52002351-0ce37780-24c2-11e9-9159-a4aad08e480a.png)
+Clicking on Australia (in a certain year) will give this donut chart in which you can see the amount of criminal activities per 100.000 inhabitants for men and women. 
 
 **Copy right statement**
 I state that I (Eveline Tiekink) own the repository and that nobody should change it. See the license.
