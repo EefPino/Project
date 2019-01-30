@@ -3,6 +3,7 @@
 __Eveline Tiekink		11267321__
 
 **Purpose**
+
 This visualization is designed to collect data of reported crime with the goal to improve the spread of that information. It is visualized by a map of the world with different colors indicating the amount of crimes (by 100.000 inhabitants). Hereby you can see which country is the most criminal during the years 2003 until 2015. 
 The crimes are divided in different categorizes: Assault, Burglary, Kidnapping, Robbery, Sexual violencea and Theft. Hereby you can see in which category each country had the most criminal activities. You can also see which gender commits the most criminal activities.
 
