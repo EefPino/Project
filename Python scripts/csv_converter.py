@@ -62,14 +62,14 @@ def merge(*args):
 
 if __name__ == "__main__":
 
-    dataset_assaults = open_csv("data_assaults_world.csv")
-    dataset_burglary = open_csv("data_burglary_world.csv")
-    dataset_females_detained = open_csv("data_females_detained_world.csv")
-    dataset_kidnapping = open_csv("data_kidnapping_world.csv")
-    dataset_males_detained = open_csv("data_males_detained_world.csv")
-    dataset_robbery = open_csv("data_robbery_world.csv")
-    dataset_sexual_violence = open_csv("data_sexual_violence_world.csv")
-    dataset_theft = open_csv("data_theft_world.csv")
+    dataset_assaults = open_csv("../data/data_assaults_world.csv")
+    dataset_burglary = open_csv("./data/data_burglary_world.csv")
+    dataset_females_detained = open_csv("./data/data_females_detained_world.csv")
+    dataset_kidnapping = open_csv("./data/data_kidnapping_world.csv")
+    dataset_males_detained = open_csv("./data/data_males_detained_world.csv")
+    dataset_robbery = open_csv("./data/data_robbery_world.csv")
+    dataset_sexual_violence = open_csv("./data/data_sexual_violence_world.csv")
+    dataset_theft = open_csv("./data/data_theft_world.csv")
 
     merge = merge(dataset_assaults, dataset_burglary,
                   dataset_kidnapping, dataset_robbery,
