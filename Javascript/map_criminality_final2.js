@@ -60,7 +60,7 @@ function mapOneCrime(crime, year){
 
   var path = d3.geoPath().projection(projection);
 
-  d3.json("Libraries/world_countries.json").then(function(response) {
+  d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Libraries/world_countries.json").then(function(response) {
     ready(response)
   })
 
@@ -207,7 +207,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 window.onload = function(){
 
-  var requests = [d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Data/data_world_new_2.json"), d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Data/data_world_everything.json")];
+  var requests = [d3.json("Data/data_world_new_2.json"), d3.json("Data/data_world_everything.json")];
 
   Promise.all(requests).then(function(response) {
 
@@ -879,7 +879,7 @@ window.onload = function(){
 
       var path = d3.geoPath().projection(projection);
 
-      d3.json("Libraries/world_countries.json").then(function(response) {
+      d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Libraries/world_countries.json").then(function(response) {
         ready(response)
       })
 
