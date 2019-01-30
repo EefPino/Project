@@ -27,6 +27,8 @@ I state that I (Eveline Tiekink) own the repository and that nobody should chang
 
 **Reference**
 
+These references have their own respective licenses. So when using these, look at there licenses as well.
+
   1. World map: "https://bl.ocks.org/micahstubbs/8e15870eb432a21f0bc4d3d527b2d14f"
   2. Bar chart: "https://bl.ocks.org/d3noob/8952219"
   3. Donut chart: "https://bl.ocks.org/mbhall88/22f91dc6c9509b709defde9dc29c63f2"
