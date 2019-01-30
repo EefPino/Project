@@ -60,7 +60,7 @@ function mapOneCrime(crime, year){
 
   var path = d3.geoPath().projection(projection);
 
-  d3.json("world_countries.json").then(function(response) {
+  d3.json("Libraries/world_countries.json").then(function(response) {
     ready(response)
   })
 
@@ -200,14 +200,14 @@ function mapOneCrime(crime, year){
 
 
 var script = document.createElement('script');
-script.src = 'http://code.jquery.com/jquery-1.11.0.min.js';
+script.src = 'https://code.jquery.com/jquery-1.11.0.min.js';
 script.type = 'text/javascript';
 document.getElementsByTagName('head')[0].appendChild(script);
 
 
 window.onload = function(){
 
-  var requests = [d3.json("data_world_new_2.json"), d3.json("data_world_everything.json")];
+  var requests = [d3.json("Data/data_world_new_2.json"), d3.json("Data/data_world_everything.json")];
 
   Promise.all(requests).then(function(response) {
 
@@ -879,7 +879,7 @@ window.onload = function(){
 
       var path = d3.geoPath().projection(projection);
 
-      d3.json("world_countries.json").then(function(response) {
+      d3.json("Libraries/world_countries.json").then(function(response) {
         ready(response)
       })
 
