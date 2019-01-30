@@ -207,7 +207,7 @@ document.getElementsByTagName('head')[0].appendChild(script);
 
 window.onload = function(){
 
-  var requests = [d3.json("Data/data_world_new_2.json"), d3.json("Data/data_world_everything.json")];
+  var requests = [d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Data/data_world_new_2.json"), d3.json("https://raw.githubusercontent.com/EefPino/Project/master/Data/data_world_everything.json")];
 
   Promise.all(requests).then(function(response) {
 
