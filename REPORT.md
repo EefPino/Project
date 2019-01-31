@@ -16,7 +16,7 @@ You also get a donut chart, whereby you can see which gender commits the most cr
 
 ## Technical Design Details
 
-I have the javascript file divided in multiple functions which I shall describe here respectively to the order in Javascript. #misschien nog de volgorde veranderen naar wat logisch is
+I have the javascript file divided in multiple functions which I shall describe here respectively to the order in Javascript. 
 
   1. **function mapOneCrime(crime, year)**
   
