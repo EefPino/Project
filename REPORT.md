@@ -79,5 +79,5 @@ I have the javascript file divided in multiple functions which I shall describe 
      
      This function creates the world map with a specific year as argument for which the data differs.
      When you click on a specific country it calles the functions createBarchart() and
-     createDonutchartData() with the country and year as arguments. I 
+     createDonutchartData() with the country and year as arguments. 
      
