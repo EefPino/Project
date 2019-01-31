@@ -28,8 +28,8 @@ function mapOneCrime(crime, year){
 
   var path = d3.geoPath();
 
-  // Deletes the world (when scrolling to anther year for instance). WERKT NIET!!!!!! HIER NOG NAAR KIJKEN
-  // d3.selectAll(".map").remove();
+  // Deletes the world map, legend, donut chart and bar chart
+  // (when clicking to anther map for instance).
   if (d3.select("svg.legendmap")) {
     d3.select("svg.legendmap").selectAll("text").remove().exit();
     d3.selectAll(".map").selectAll("path").remove();
@@ -41,7 +41,6 @@ function mapOneCrime(crime, year){
   }
 
   if (d3.select("svg.bar")) {
-    // d3.select("svg.bar").selectAll("text.axis").remove().exit();
     d3.select("svg.bar").selectAll("text").remove().exit();
     d3.select("svg.bar").selectAll("rect").remove().exit();
     d3.select("svg.bar").selectAll("g").remove().exit();
@@ -120,8 +119,6 @@ function mapOneCrime(crime, year){
                .style('stroke', 'white')
                .style('stroke-width', 1.5)
                .style("opacity", 0.8)
-
-               // Nog veranderen naar css stylesheet!! Styles the tooltips. !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                .style("stroke","white")
                .style('stroke-width', 0.3)
                .on('mouseover',function(d){
@@ -252,19 +249,6 @@ window.onload = function(){
                  .attr("class", "bar")
                  .attr("width", widthSVGbar)
                  .attr("height", heightSVGbar);
-
-
-       // // Defines the margins for the svg and donut and defines the colors
-       // // and other values for the donutchart.
-       // var widthSVGdonut = 700;
-       // var heightSVGdonut = 550;
-       //
-       // // Gives the svg of the donut chart a body with an width and height.
-       // svgDonut = d3.select("body")
-       //              .append("svg")
-       //              .attr("class", "pie")
-       //              .attr("width", widthSVGdonut)
-       //              .attr("height", heightSVGdonut);
     };
 
     // Defines the data.
@@ -516,18 +500,6 @@ window.onload = function(){
       var height = 300;
       var widthBar = 30;
 
-      // // Deletes the bar chart (when clicking on a new country for instance).
-      // if (d3.select("svg.bar")) {
-      //   d3.select("svg.bar").remove().exit();
-      // }
-
-      // // Gives the svg, a body with an width and height.
-      // var svgBar = d3.select("body")
-      //                .append("svg")
-      //                .attr("class", "bar")
-      //                .attr("width", widthSVGbar)
-      //                .attr("height", heightSVGbar);
-
       // Looks if there is data of one sort of crime undefined.
       for (i in amount) {
         if (isNaN(amount[i])) {
@@ -545,33 +517,21 @@ window.onload = function(){
           zerocount = 1;
         }
 
-        // NOG KIJKEN OF IK DIT IN 1 DING KAN DOEN, DUS ZEG MAAR SAMEN MET ANDERE SCHRIFT, DAN NOOIT OVER LEKAAR !!!!!!!?????????
+        // Makes a subtitle when not all the data is available.
         else {
           if (paddingcount == 7) {
             svgBar.append("text")
                   .attr("class", "text")
-                  // .text("There is no data available for")
                   .text("Not all the data is available")
                   .style("font-size", "12px")
-                  // .attr("transform", "translate(" + padding2  + "," + padding2 * 2 + ")");
                   .attr("transform", "translate(" + padding2 * 4  + "," + padding2 * 2 + ")");
           };
-
-          // // DIT MOET ERGENS ANDERS, ALLEEN OM TE KIJKEN OF DIE 0 IS IPV NAN IS?????!!!!
-          // // Gives a subtitle which informs that there is not all the data.
-          // svgBar.append("text")
-          //       .attr("class", "text")
-          //       .text(dataSorts[i])
-          //       .style("font-size", "12px")
-          //       .attr("transform", "translate(" + (padding2 * (4 + paddingcount))  + "," + padding2 * 2 + ")");
-          // paddingcount += 4
         };
       };
 
       // Deletes the bar chart when all the data of it is zero.
       if(!zerocount) {
         if (d3.select("svg.bar")) {
-          // d3.select("svg.bar").selectAll("text.axis").remove().exit();
           d3.select("svg.bar").selectAll("text").remove().exit();
           d3.select("svg.bar").selectAll("rect").remove().exit();
           d3.select("svg.bar").selectAll("g").remove().exit();
@@ -643,8 +603,6 @@ window.onload = function(){
                  return d;
                })
               .attr("x", function(d, i) {
-
-                // Dit nog veranderen naar iets met xScale!!!!!!!!!!!!!!????????????!!! ????!!!
                  return ((i * barWidth + 95));
                })
               .text(function(d){
@@ -699,7 +657,7 @@ window.onload = function(){
         genderData[d] = {"2003": [], "2004": [], "2005": [], "2006": [], "2007": [], "2008": [], "2009": [],"2010": [], "2011": [], "2012": [], "2013": [], "2014": [], "2015": []};
       });
 
-      // Adds the right data to the dictionary
+      // Adds the right data to the dictionary.
       worldData["data"].forEach( function (dp) {
         for (i = 90; i < 120; i += 15) {
           for (j = 2; j < 15; j++) {
@@ -708,7 +666,8 @@ window.onload = function(){
         };
       });
 
-      // Change the names of the countries to names which are in accordance with the data map countries.
+      // Change the names of the countries to names which are in accordance
+      // with the data map countries.
       for (i in oldCountryNames) {
         genderData[newCountryNames[i]] = genderData[oldCountryNames[i]]
         delete genderData[oldCountryNames[i]];
@@ -747,7 +706,7 @@ window.onload = function(){
       var color = d3.scaleOrdinal()
                     .range(["rgb(8, 48, 107)", "pink", "rgb(155, 0, 155)"]);
 
-      // Deletes the pie chart (when clicking on a new one for instance).       !!!!!!!!!!???????/ DEZE HIER LATEN WERKT NOG NIET GOED
+      // Deletes the pie chart (when clicking on a new one for instance).
       if (d3.select("svg.pie")) {
         d3.select("svg.pie").remove().exit();
       }
@@ -935,8 +894,6 @@ window.onload = function(){
               .style('stroke', 'white')
               .style('stroke-width', 1.5)
               .style("opacity",0.8)
-
-              // Nog veranderen naar css stylesheet!! Styles the tooltips. ???????????!!!!!!!
               .style("stroke","white")
               .style('stroke-width', 0.3)
               .on('mouseover',function(d){
