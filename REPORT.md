@@ -3,7 +3,7 @@
 __Eveline Tiekink   11267321__
 
 
-**Goal** 
+## Goal 
 
 This visualization is designed to collect data of reported crime with the goal to improve the spread of this information.
 It is visualized by a world map with different colors relative to the amount of crimes (per 100.000 inhabitants).
@@ -78,6 +78,7 @@ I have the javascript file divided in multiple functions which I shall describe 
   8. function createMap(year)
      
      This function creates the world map with a specific year as argument for which the data differs.
+     It also creates a tip wich shows the country the amount of criminal activities in that country.
      When you click on a specific country it calles the functions createBarchart() and
-     createDonutchartData() with the country and year as arguments. 
+     createDonutchartData() with the country and year as arguments. It also calls the function which creates a legend
      
