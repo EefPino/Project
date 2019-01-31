@@ -1,6 +1,6 @@
 # Report Project: Criminal activities around the world
 
-__Eveline Tiekink		11267321__
+__Eveline Tiekink	    	11267321__
 
 
 **Goal** 
@@ -11,3 +11,6 @@ Hereby you can see for instance which country is the most criminal during the ye
 The crimes are divided in different categorizes: assault, burglary, kidnapping, robbery, sexual violencea and theft.
 Hereby you can see the precise amount of criminal activities in a category for each country.
 You can also see which gender commits the most criminal activities with the precise amount of criminal activities per 100.000 inhabitants.
+
+![afbeelding](https://user-images.githubusercontent.com/43990565/52045881-b9b30880-2545-11e9-8445-d09d0525dbe4.png)
+
