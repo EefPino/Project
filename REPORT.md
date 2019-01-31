@@ -8,7 +8,7 @@ __Eveline Tiekink   11267321__
 This visualization is designed to collect data of reported crime with the goal to improve the spread of this information.
 It is visualized by a world map with different colors relative to the amount of crimes (per 100.000 inhabitants).
 Hereby you can see for instance which country is the most criminal during the years 2003 until 2015.
-The crimes are divided in different categorizes: assault, burglary, kidnapping, robbery, sexual violencea and theft.
+The crimes are divided in different categorizes: assault, burglary, kidnapping, robbery, sexual violence and theft.
 By clicking on a country a bar chart will be visualized, trough which you can see the precise amount of criminal activities in a category for that country.
 You also get a donut chart, whereby you can see which gender commits the most criminal activities with the precise amount of criminal activities per 100.000 inhabitants. Below this is shown.
 
@@ -35,6 +35,7 @@ I have the javascript file divided in multiple functions which I shall describe 
      the values are dependent on the highest value and the lowest value which is put on zero.
      
   3. function createsSVGs()
+  
      This function will be called always. it makes a SVG (Scalable Vector Graphics) for the worldmap, the legend and the bar chart.
      
   4. function getData(worldData)
@@ -48,5 +49,35 @@ I have the javascript file divided in multiple functions which I shall describe 
      In this function the names of some countries will be changed
      to names which are in coordance with the countries in the data of the world map.
      
-  5. fucntion createBarchart(cont, year)
+  5. function createBarchart(cont, year)
+     
+     This function will be called when you click on a country in the world map. 
+     It creates a bar chart with on the x-axis the categorizes of crime:
+     assault, burglary, kidnapping, robbery, sexual violence and theft.
+     The y-axis is variable to the maximum value and it starts always at zero. 
+     When you click on another country the chart will be removed when there is no data of and
+     otherwise the y-axis will be changed as well as the title(s).
+     The title is variable to which country you click on
+     and if there is no data of a specific category of crime, a subtitle will be added.
+     When you scroll over the bars, the specific data will be shown.
+     
+  6. function createDonutchartData(cont, year)
+  
+     This function creates the data needed for the donut chart.
+     When you click on a country in the world map, this function will be called.
+     It makes a dictionary with all the countries as keys, wherein the values dictionaries are
+     with the years as keys and a list with the values for men and women as values. 
+     Only when there is data of both, men and women, the createDonutchart() function will be called.
+     Otherwise the previous donut chart will be deleted.
+     
+  7. function createDonutchart(data, cont) 
+     
+     This function creates the donut chart with a variable title and another value when you scroll over the slice.
+     It will also create a legend which is for each donut chart the same.
+     
+  8. function createMap(year)
+     
+     This function creates the world map with a specific year as argument for which the data differs.
+     When you click on a specific country it calles the functions createBarchart() and
+     createDonutchartData() with the country and year as arguments. I 
      
