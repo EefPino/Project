@@ -82,5 +82,11 @@ I have the javascript file divided in multiple functions which I shall describe 
      
 ## Challenges
  
-I had many intentions at the start, but I have not done these all like I expected beforehand aswell. To start with the emigration of the criminals.  
+I had many intentions at the start, but I have not done these all like I expected beforehand aswell. To start with the emigration of the criminals. At the beginning I wanted to have arrows in the map which describe the amount of emigration to and from specific countries. I only could found very poor data of this, so that was the reason why I decided very early to do this not.
+
+Parsing the data was something which took a lot of time. Some csv files I had were ordered in a very chaotic and unuseful way. I also have made multiple conversion pythons scripts to convert the csv files in a dataframe in JSON, because dataframes are easy to use I think. At first I had made like eight JSON files and thereafter I thought, it was more handy to merge the dataframes and make one JSON file for all.
+I also converted some data which I only needed to use when I wanted the make a map of the Netherlands with its towns, but eventually I have not made that at all. So this was at least one day work for nothing. So in the future I am going to convert the data which I will need for certain.
+
+
+
      
