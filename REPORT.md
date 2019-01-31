@@ -85,7 +85,9 @@ I have the javascript file divided in multiple functions which I shall describe 
 I had many intentions at the start, but I have not done these all like I expected beforehand aswell. To start with the emigration of the criminals. At the beginning I wanted to have arrows in the map which describe the amount of emigration to and from specific countries. I only could found very poor data of this, so that was the reason why I decided very early to do this not.
 
 Parsing the data was something which took a lot of time. Some csv files I had were ordered in a very chaotic and unuseful way. I also have made multiple conversion pythons scripts to convert the csv files in a dataframe in JSON, because dataframes are easy to use I think. At first I had made like eight JSON files and thereafter I thought, it was more handy to merge the dataframes and make one JSON file for all.
-I also converted some data which I only needed to use when I wanted the make a map of the Netherlands with its towns, but eventually I have not made that at all. So this was at least one day work for nothing. So in the future I am going to convert the data which I will need for certain.
+
+I also converted some data which I only needed to use when I wanted the make a map of the Netherlands with its towns, but eventually I have not made that at all. So this was at least one day work for nothing. So in the future I am going to convert the data which I will need for certain. Luckily I did not had converted data for the United States of America, because when I did had a lot of time, I also wanted to do it for the USA (see the proposal).
+I have made also a file only with data from 2010 and 2015. (I had chosen 2010, because this was a year with the most data.) Later I made a file for all the years (2003 - 2015). I did not started with this, because I did not had planned to make a year slider, which I eventually have made extra.
 
 
 
