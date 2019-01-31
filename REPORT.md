@@ -80,3 +80,7 @@ I have the javascript file divided in multiple functions which I shall describe 
      When you click on a specific country it calles the functions createBarchart() and
      createDonutchartData() with the country and year as arguments. It also calls the function which creates a legend
      
+## Challenges
+ 
+I had many intentions at the start, but I have not done these all like I expected beforehand aswell. To start with the emigration of the criminals.  
+     
