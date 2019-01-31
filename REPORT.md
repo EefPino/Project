@@ -25,18 +25,18 @@ I have the javascript file divided in multiple functions which I shall describe 
      Thereafter it will create the world map with the correct data and it will call the function, which creates a legend.
      The data it appends depends on the year and the categrory of crime (the arguments of the function).
      
-  **2. function createLegendMap()**
+  2. **function createLegendMap()**
      
      This function can be called on two different places. 
      When a world map of one category is created (see before) or
      when a world map is formed of all the criminal activities in that country. It makes a legend with different colors of squares and
      the values are dependent on the highest value and the lowest value which is put on zero.
      
-  **3. function createsSVGs()**
+  3. **function createsSVGs()**
   
      This function will be called always. it makes a SVG (Scalable Vector Graphics) for the worldmap, the legend and the bar chart.
      
-  **4. function getData(worldData)**
+  4. **function getData(worldData)**
   
      This function will also be called always.
      The worldData is a JSON file with the data of all criminal activities for all the countries from 2003-2015.
@@ -47,7 +47,7 @@ I have the javascript file divided in multiple functions which I shall describe 
      In this function the names of some countries will be changed
      to names which are in coordance with the countries in the data of the world map.
      
-  **5. function createBarchart(cont, year)**
+  5. **function createBarchart(cont, year)**
      
      This function will be called when you click on a country in the world map. 
      It creates a bar chart with on the x-axis the categorizes of crime:
@@ -59,7 +59,7 @@ I have the javascript file divided in multiple functions which I shall describe 
      and if there is no data of a specific category of crime, a subtitle will be added.
      When you scroll over the bars, the specific data will be shown.
      
-  **6. function createDonutchartData(cont, year)**
+  6. **function createDonutchartData(cont, year)**
   
      This function creates the data needed for the donut chart.
      When you click on a country in the world map, this function will be called.
@@ -68,12 +68,12 @@ I have the javascript file divided in multiple functions which I shall describe 
      Only when there is data of both, men and women, the createDonutchart() function will be called.
      Otherwise the previous donut chart will be deleted.
      
-  **7. function createDonutchart(data, cont)**
+  7. **function createDonutchart(data, cont)**
      
      This function creates the donut chart with a variable title and another value when you scroll over the slice.
      It will also create a legend which is for each donut chart the same.
      
-  **8. function createMap(year)**
+  8. **function createMap(year)**
      
      This function creates the world map with a specific year as argument for which the data differs.
      It also creates a tip wich shows the country the amount of criminal activities in that country.
