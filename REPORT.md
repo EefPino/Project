@@ -93,4 +93,11 @@ Another challenging thing was to prevent the shifting of the visualisations. Thi
 
 The dropdown menu for the categorizes was also a challenge. Now you cannot click on the dropdown menu from the information and reference page. This is also really fine, but I had planned it different. The reason hereferore is time. You must make a very good connection between the html files in the following way: when you click for instance at the information page at a crime in the dropdown it must link to the home html page and it must automatically call a function with the specific crime where you have clicked on as one argument and a year as another argument. This takes effort and to much time.
 
-     
+## Decisions
+
+Above I also argument already why I did some decisions. When I had a lot more time or did not wasted my time at parsing data I did not needed and that kind of things, my website would be more beautiful with a map of the Netherands as well.
+I chose for the color green, because it is a standard color. In the beginning everything was blue, but I wanted to make a donut chart with blue and pink for respectively men and women. So it looked like the crimes were only commited by men, but it was for the whole population. 
+
+## Conclusion
+
+Enjoy the website! (If you have other questions or feedback you can always connect me.)
