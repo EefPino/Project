@@ -21,5 +21,6 @@ You also get a donut chart, whereby you can see which gender commits the most cr
 I have the javascript file divided in multiple functions which I shall describe here respectively to the order in Javascript. 
 
   1. function MapOneCrime(crime, year)
+  
      This function will be called when there will be clicked on a crime category in the dropdown menu.
      At first a part of the map, legend, the donut chart and the bar chart will be deleted. Thereafter it will create the world map with            the correct.
